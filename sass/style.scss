@@ -1,0 +1,21 @@
+@import "./utils/variables";
+@import "./components/btn";
+@import "./layout/header";
+@import "./layout/main";
+
+
+//* MAIN ELEMENTS
+* {
+    box-sizing: border-box;
+    font-family: "DM Sans", sans-serif;
+}
+* a {
+    text-decoration: none;
+}
+body{
+    color: $red;
+}
+// .screen-size{
+//     max-width: 1440px;
+//     margin: auto;
+// }
