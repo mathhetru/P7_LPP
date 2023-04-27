@@ -1,0 +1,24 @@
+.search-bar{
+    width: 100%;
+    height: 69px;
+    background-color: $lightGrey;
+    border-radius: 5px;
+    &__input{
+        width: 95%;
+        height: 100%;
+        background-color: transparent;
+        border: 0px;
+        padding: 0 0 0 24px;
+        font-family: $lato;
+        font-weight: $light;
+    }
+    &__btn{
+        position: absolute;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+    }
+    &__icon{
+        margin-top: 15px;
+    }
+}

@@ -10,18 +10,97 @@
 	</head>
 		<body>
 			<header class="header">
-				<a href="index.html" class="header__link" aria-current="page"><img src="assets/logos/LPP_logo.svg" class="header-logo" alt="Lien vers page d'accueil"></a>
-				<h1 class="header-title">Les petits plats</h1>
-				<div class="search-bar">
+				<a href="index.html" class="header__link">
+					<img src="assets/logos/LPP_logo.svg" class="header-logo" alt="Lien vers page d'accueil">
+					<h1 class="header-title">Les petits plats</h1>				
+				</a>
+				<section class="search-bar">
 					<input type="text" class="search-bar__input" placeholder="Rechercher une recette">
 					<button type="submit" class="search-bar__btn">
 						<img src="assets/icons/LPP_search.svg" class="search-bar__icon" alt="search icon">
 					</button>
-				</div>
-				div.tag
+				</section>
+				<section class="tag-block">
+					<div class="tag-block-blue">
+						<p class="tag-block-blue__text">Coco</p>
+						<img src="assets/icons/LPP_close.svg" class="tag-block-blue__icon" alt="search icon">
+					</div>
+					<div class="tag-block-green">
+						<p class="tag-block-green__text">Blender</p>
+						<img src="assets/icons/LPP_close.svg" class="tag-block-green__icon" alt="search icon">
+					</div>
+					<div class="tag-block-orange">
+						<p class="tag-block-orange__text">Fouet</p>
+						<img src="assets/icons/LPP_close.svg" class="tag-block-orange__icon" alt="search icon">
+					</div>
+				</section>
+				<section class="dropdown-section">
+					<div class="dp-ingredients">
+						<input type="text" class="dp-ingredients__input" placeholder="Ingredients">
+						<button type="submit" class="dp-ingredients__btn">
+							<img src="assets/icons/LPP_arrowdown.svg" class="dp-ingredients__icon" alt="dropwdown icon">
+						</button>
+						<!-- <div class="list">
+							<p class="list__text">Lait de coco</p>
+							<p class="list__text">Jus de citron</p>
+							<p class="list__text">Crème de coco</p>
+							<p class="list__text">Sucre</p>
+							<p class="list__text">Glaçons</p>
+							<p class="list__text">Thon rouge</p>
+							<p class="list__text">Concombre</p>
+							<p class="list__text">Tomate</p>
+							<p class="list__text">Carotte</p>
+							<p class="list__text">Citron vert</p>
+							<p class="list__text">Poulet</p>
+							<p class="list__text">Ta mère</p>
+						</div> -->
+					</div>
+
+					<div class="dp-appareils">
+						<input type="text" class="dp-appareils__input" placeholder="Appareils">
+						<button type="submit" class="dp-appareils__btn">
+							<img src="assets/icons/LPP_arrowdown.svg" class="dp-appareils__icon" alt="dropwdown icon">
+						</button>
+					</div>
+
+					<div class="dp-ustensiles">
+						<input type="text" class="dp-ustensiles__input" placeholder="Ustensiles">
+						<button type="submit" class="dp-ustensiles__btn">
+							<img src="assets/icons/LPP_arrowdown.svg" class="dp-ustensiles__icon" alt="dropwdown icon">
+						</button>
+					</div>
+				</section>
 			</header>
 			<main class="main">
-				<!-- <div class="photographer-section"></div> -->
+				<section class="card-galery">
+					<article class="recipe-card">
+						<a href="#" class="recipe-card__link">
+							<div class="recipe-card-picture">
+								<!-- <img src="" class="recipe-card-picture__img" alt="Image recipe"/> -->
+							</div>
+							<div class="recipe-card-panel">
+								<div class="recipe-card-line">
+									<h2 class="recipe-card-line__title">Poulet coco réunionnais</h2>
+									<div class="recipe-card-time">
+										<img src="assets/icons/LPP_clock.svg" class="recipe-card-time__img' alt="clock icon">
+										<p class="recipe-card-panel-time__text">80 min</p>
+									</div>
+								</div>
+								<div class="recipe-card-description">
+									<ul class="recipe-card-list">
+										<li class="recipe-card-list__text">Poulet: 1</li>
+										<li class="recipe-card-list__text">Lait de coco: 400ml</li>
+										<li class="recipe-card-list__text">Coulis de tomate: 25cl</li>
+										<li class="recipe-card-list__text">Oignon: 1</li>
+										<li class="recipe-card-list__text">Poivron rouge: 1</li>
+									</ul>
+									<p class="recipe-card-block">Découper le poulet en morceaux, les faire dorer dans une cocotte avec de l'huile d'olive. Salez et poivrez. Une fois doré, laisser cuire en ajoutant de l'eau. Au bout de...
+									</p>
+								</div>
+							</div>
+						</a>
+					</article>
+				</section>
 			</main>
 			<!-- <script src="scripts/pages/index.js" type="module"></script> -->
 		</body>

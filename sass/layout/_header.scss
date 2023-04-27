@@ -1,18 +1,19 @@
 .header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 120px;
     &__link{
-        margin-left: 100px;
+        margin: 40px 0 20px 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
     }
     &-logo{ 
-        height: 50px;
+        height: 46px;
+        margin: auto;
     }
     &-title{
-        margin-right: 100px;
-        font-weight: $w-medium;
+        margin: 0;
+        color: $red;
+        font-size: $logo;
+        font-weight: $bold;
     }
 }
 

@@ -1,6 +1,11 @@
 @import "./utils/variables";
-@import "./components/btn";
+@import "./components/card";
+@import "./components/dropdown";
+@import "./components/tag";
 @import "./layout/header";
+@import "./layout/search-bar";
+@import "./layout/main";
+@import "./layout/select-boxes";
 @import "./layout/main";
 
 
@@ -13,9 +18,7 @@
     text-decoration: none;
 }
 body{
-    color: $red;
+    max-width: 1240px;
+    margin: auto;
+    color: $black;
 }
-// .screen-size{
-//     max-width: 1440px;
-//     margin: auto;
-// }

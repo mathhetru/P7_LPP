@@ -1,0 +1,17 @@
+.tag-block{
+    display: flex;
+    height: 80px;
+    align-items: center;
+    &-blue{
+        @include tag($blue);
+        background-color: $blue;
+    }
+    &-green{
+        @include tag($green);
+        background-color: $green;
+    }
+    &-orange{
+        @include tag($orange);
+        background-color: $orange;
+    }
+}

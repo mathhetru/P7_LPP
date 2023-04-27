@@ -1,17 +1,23 @@
-@mixin btn {
-    font-size: 20px;
-    font-weight: $w-bold;
-    color: $white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: $red;
+@mixin tag($color) {
+    padding: 0 20px;
+    margin-right: 20px ;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 37px;
     border-radius: 5px;
-    cursor: pointer;
+    &__text{
+        font-family: $lato;
+        font-weight: $bold;
+        font-size: $medium;
+        color: $white;
+    }
+    &__icon{
+        cursor: pointer;
+        margin-left: 15px;
+    }
     &:hover, &:focus{
-        color: $black;
-        background-color: $orange;
+        background-color: darken($color, 15%);
         transition-duration: 0.5s;
     }
 }
