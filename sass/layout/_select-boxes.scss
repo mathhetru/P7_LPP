@@ -15,3 +15,23 @@
         background-color: $orange;
     }
 }
+
+.dropdown-section{
+    display: flex;
+    height: 69px;
+    align-items: center;
+    .dp{
+        &-ingredients{
+            @include dropdown($blue);
+            background-color: $blue;
+        }
+        &-appareils{
+            @include dropdown($green);
+            background-color: $green;
+        }
+        &-ustensiles{
+            @include dropdown($orange);
+            background-color: $orange;
+        }
+    }
+}

@@ -118,6 +118,84 @@
   transition-duration: 0.5s;
 }
 
+.dropdown-section {
+  display: flex;
+  height: 69px;
+  align-items: center;
+}
+.dropdown-section .dp-ingredients {
+  padding: 0 20px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 37px;
+  border-radius: 5px;
+  background-color: #3282F7;
+}
+.dropdown-section .dp-ingredients__text {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #FFFFFF;
+}
+.dropdown-section .dp-ingredients__icon {
+  cursor: pointer;
+  margin-left: 15px;
+}
+.dropdown-section .dp-ingredients:hover, .dropdown-section .dp-ingredients:focus {
+  background-color: #085bd4;
+  transition-duration: 0.5s;
+}
+.dropdown-section .dp-appareils {
+  padding: 0 20px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 37px;
+  border-radius: 5px;
+  background-color: #68D9A4;
+}
+.dropdown-section .dp-appareils__text {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #FFFFFF;
+}
+.dropdown-section .dp-appareils__icon {
+  cursor: pointer;
+  margin-left: 15px;
+}
+.dropdown-section .dp-appareils:hover, .dropdown-section .dp-appareils:focus {
+  background-color: #31c37f;
+  transition-duration: 0.5s;
+}
+.dropdown-section .dp-ustensiles {
+  padding: 0 20px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 37px;
+  border-radius: 5px;
+  background-color: #ED6454;
+}
+.dropdown-section .dp-ustensiles__text {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #FFFFFF;
+}
+.dropdown-section .dp-ustensiles__icon {
+  cursor: pointer;
+  margin-left: 15px;
+}
+.dropdown-section .dp-ustensiles:hover, .dropdown-section .dp-ustensiles:focus {
+  background-color: #dd2c17;
+  transition-duration: 0.5s;
+}
+
 * {
   box-sizing: border-box;
   font-family: "DM Sans", sans-serif;
