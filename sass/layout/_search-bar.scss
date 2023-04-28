@@ -11,6 +11,10 @@
         padding: 0 0 0 24px;
         font-family: $lato;
         font-weight: $light;
+        &::placeholder{
+            color: $black;
+            opacity: .25;
+        }
     }
     &__btn{
         position: absolute;

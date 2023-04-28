@@ -1,0 +1,66 @@
+@mixin card {
+    &__link{
+        display: block;
+        height: 100%;
+        color: $black;
+        border-radius: 5px;
+        background-color: $lightGrey;
+    }
+    &-picture{
+        height: 50%;
+        border-radius: 5px 5px 0 0;
+        background-color: $grey;
+        &__img{
+            overflow: hidden;
+            height: 100%;
+        }
+    }
+    &-panel{
+        height: 50%;
+        padding: 20px;
+    }
+    &-line{
+        display: flex;
+        justify-content: space-between;
+        &__title{
+            font-family: $lato;
+            font-size: $large;
+            font-weight: $light;
+            margin: 0;
+        }
+    }
+    &-time{
+        display: flex;
+        &__img{
+            margin-right: 10px;
+        }
+        &__text{
+            margin: 0;
+            font-family: $lato;
+            font-size: $large;
+            font-weight: $bold;
+        }
+    }
+    &-description{
+        display: flex;
+        padding-top: 20px;
+        &-list{
+            width: 50%;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        &-list__text{
+            font-family: $lato;
+            font-size: $small;
+            font-weight: $bold;
+        }
+        &-block{
+            width: 50%;
+            margin: 0;
+            font-family: $roboto;
+            font-size: $small;
+            font-weight: $light;
+        }
+    }
+}

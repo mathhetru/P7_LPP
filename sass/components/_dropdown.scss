@@ -1,19 +1,36 @@
 @mixin dropdown($color) {
-    padding: 0 20px;
-    margin-right: 20px ;
+    margin-right: 20px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 37px;
+    flex-direction: column;
+    min-height: 69px;
     border-radius: 5px;
-    &__text{
+    &-block{
+        display: flex;
+        align-items: center;
+        height: 69px;
+        justify-content: space-between;
+    }
+    &__input{
+        // width: 80%;
+        height: 69px;
+        background-color: transparent;
+        border: 0px;
+        padding: 0 0 0 24px;
         font-family: $lato;
         font-weight: $bold;
-        font-size: $medium;
+        font-size: $large;
         color: $white;
+        &::placeholder{
+            color: $white;
+        }
+    }
+    &__btn{
+        width: 69px;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
     }
     &__icon{
-        cursor: pointer;
         margin-left: 15px;
     }
     &:hover, &:focus{

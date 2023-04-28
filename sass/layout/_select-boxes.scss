@@ -18,8 +18,7 @@
 
 .dropdown-section{
     display: flex;
-    height: 69px;
-    align-items: center;
+    align-items: flex-start;
     .dp{
         &-ingredients{
             @include dropdown($blue);
@@ -32,6 +31,24 @@
         &-ustensiles{
             @include dropdown($orange);
             background-color: $orange;
+        }
+        &-list{
+            padding: 0 24px 24px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 667px;
+            &__text{
+                cursor: pointer;
+                margin: 8px 0;
+                width: 33.3%;
+                font-family: $lato;
+                font-size: $large;
+                color: $white;
+                font-weight: $light;
+                &:hover{
+                    font-weight: $bold;
+                }
+            }
         }
     }
 }
