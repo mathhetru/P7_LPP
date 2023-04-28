@@ -53,11 +53,15 @@
         &-list__text{
             font-family: $lato;
             font-size: $small;
-            font-weight: $bold;
+            font-weight: $light;
+            &-bold{
+                font-weight: $bold;
+            }
         }
         &-block{
             width: 50%;
             margin: 0;
+            text-align: justify;
             font-family: $roboto;
             font-size: $small;
             font-weight: $light;

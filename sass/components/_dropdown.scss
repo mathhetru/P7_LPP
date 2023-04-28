@@ -11,7 +11,6 @@
         justify-content: space-between;
     }
     &__input{
-        // width: 80%;
         height: 69px;
         background-color: transparent;
         border: 0px;
@@ -22,6 +21,9 @@
         color: $white;
         &::placeholder{
             color: $white;
+        }
+        &:focus-visible, &:focus{
+            outline: none !important;
         }
     }
     &__btn{

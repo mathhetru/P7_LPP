@@ -15,6 +15,9 @@
             color: $black;
             opacity: .25;
         }
+        &:focus-visible, &:focus{
+            outline: none !important;
+        }
     }
     &__btn{
         position: absolute;

@@ -34,6 +34,9 @@
   color: #000000;
   opacity: 0.25;
 }
+.search-bar__input:focus-visible, .search-bar__input:focus {
+  outline: none !important;
+}
 .search-bar__btn {
   position: absolute;
   cursor: pointer;
@@ -109,11 +112,15 @@
 .recipe-card-description-list__text {
   font-family: "Lato", sans-serif;
   font-size: 12px;
+  font-weight: 400;
+}
+.recipe-card-description-list__text-bold {
   font-weight: 700;
 }
 .recipe-card-description-block {
   width: 50%;
   margin: 0;
+  text-align: justify;
   font-family: "Roboto", sans-serif;
   font-size: 12px;
   font-weight: 400;
@@ -121,7 +128,7 @@
 
 .tag-block {
   display: flex;
-  height: 80px;
+  margin-top: 20px;
   align-items: center;
 }
 .tag-block-blue {
@@ -199,6 +206,7 @@
 
 .dropdown-section {
   display: flex;
+  margin-top: 20px;
   align-items: flex-start;
 }
 .dropdown-section .dp-ingredients {
@@ -227,6 +235,9 @@
 }
 .dropdown-section .dp-ingredients__input::placeholder {
   color: #FFFFFF;
+}
+.dropdown-section .dp-ingredients__input:focus-visible, .dropdown-section .dp-ingredients__input:focus {
+  outline: none !important;
 }
 .dropdown-section .dp-ingredients__btn {
   width: 69px;
@@ -268,6 +279,9 @@
 .dropdown-section .dp-appareils__input::placeholder {
   color: #FFFFFF;
 }
+.dropdown-section .dp-appareils__input:focus-visible, .dropdown-section .dp-appareils__input:focus {
+  outline: none !important;
+}
 .dropdown-section .dp-appareils__btn {
   width: 69px;
   cursor: pointer;
@@ -307,6 +321,9 @@
 }
 .dropdown-section .dp-ustensiles__input::placeholder {
   color: #FFFFFF;
+}
+.dropdown-section .dp-ustensiles__input:focus-visible, .dropdown-section .dp-ustensiles__input:focus {
+  outline: none !important;
 }
 .dropdown-section .dp-ustensiles__btn {
   width: 69px;
@@ -405,11 +422,15 @@
 .recipe-card-description-list__text {
   font-family: "Lato", sans-serif;
   font-size: 12px;
+  font-weight: 400;
+}
+.recipe-card-description-list__text-bold {
   font-weight: 700;
 }
 .recipe-card-description-block {
   width: 50%;
   margin: 0;
+  text-align: justify;
   font-family: "Roboto", sans-serif;
   font-size: 12px;
   font-weight: 400;
