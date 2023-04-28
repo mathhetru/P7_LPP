@@ -50,7 +50,7 @@
 .card-galery {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 70px;
+  gap: 50px;
   margin-top: 25px;
 }
 
@@ -74,6 +74,7 @@
   height: 100%;
 }
 .recipe-card-panel {
+  overflow: hidden;
   height: 50%;
   padding: 20px;
 }
@@ -89,6 +90,8 @@
 }
 .recipe-card-time {
   display: flex;
+  align-items: flex-start;
+  min-width: 85px;
 }
 .recipe-card-time__img {
   margin-right: 10px;
@@ -108,6 +111,8 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+  max-height: 102px;
+  overflow: hidden;
 }
 .recipe-card-description-list__text {
   font-family: "Lato", sans-serif;
@@ -124,6 +129,8 @@
   font-family: "Roboto", sans-serif;
   font-size: 12px;
   font-weight: 400;
+  max-height: 97px;
+  overflow: hidden;
 }
 
 .tag-block {
@@ -360,7 +367,7 @@
 .card-galery {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 70px;
+  gap: 50px;
   margin-top: 25px;
 }
 
@@ -384,6 +391,7 @@
   height: 100%;
 }
 .recipe-card-panel {
+  overflow: hidden;
   height: 50%;
   padding: 20px;
 }
@@ -399,6 +407,8 @@
 }
 .recipe-card-time {
   display: flex;
+  align-items: flex-start;
+  min-width: 85px;
 }
 .recipe-card-time__img {
   margin-right: 10px;
@@ -418,6 +428,8 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+  max-height: 102px;
+  overflow: hidden;
 }
 .recipe-card-description-list__text {
   font-family: "Lato", sans-serif;
@@ -434,6 +446,8 @@
   font-family: "Roboto", sans-serif;
   font-size: 12px;
   font-weight: 400;
+  max-height: 97px;
+  overflow: hidden;
 }
 
 * {

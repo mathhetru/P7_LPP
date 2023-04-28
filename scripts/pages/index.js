@@ -5,32 +5,34 @@ async function displayIndexrecipes(data) {
     generateRecipes(data.recipes);
 }
 
-export function recipeFactory(recipe) {
-    const { id, name, servings, ingredients, time, description, appliance, ustensils } = recipe;
-    return { id, name, servings, ingredients, time, description, appliance, ustensils, indexArticleDOM};
-}
 
-
-export function generateRecipes(recipes) {
+function generateRecipes(recipes) {
     const recipesListDOM = recipes.map((oneRecipe) => {
-        const recipeCard = recipeFactory(oneRecipe);
-
-        return recipeCard.indexArticleDOM(
-            recipeCard.id,
-            recipeCard.name,
-            recipeCard.servings,
-            recipeCard.ingredients,
-            recipeCard.time,
-            recipeCard.description,
-            recipeCard.appliance,
-            recipeCard.ustensils
+        return indexArticleDOM(
+            oneRecipe.id,
+            oneRecipe.name,
+            oneRecipe.ingredients,
+            oneRecipe.time,
+            oneRecipe.description,
+            oneRecipe.appliance,
+            oneRecipe.ustensils
         );
     });
     document.querySelector(".card-galery").innerHTML = recipesListDOM.join("");
 }
 
+function generateIngredients(ingredients){
+    const ingredientListDOM = ingredients.map((oneIngredient) => {
+        return `
+        <li class="recipe-card-description-list__text">
+            <span class="recipe-card-description-list__text-bold">${oneIngredient.ingredient} :</span> ${oneIngredient.quantity} ${oneIngredient.unit} 
+        </li>
+        `;
+    });
+    return ingredientListDOM.join("");
+}
 
-function indexArticleDOM(id, name, servings, ingredients, time, description, appliance, ustensils) {
+function indexArticleDOM(id, name, ingredients, time, description, appliance, ustensils) {
     const articleDOM = `
     <article class="recipe-card" data-recipe-id="${id}">
         <a href="#" class="recipe-card__link">
@@ -42,16 +44,12 @@ function indexArticleDOM(id, name, servings, ingredients, time, description, app
                     <h2 class="recipe-card-line__title">${name}</h2>
                     <div class="recipe-card-time">
                         <img src="assets/icons/LPP_clock.svg" class="recipe-card-time__img" alt="clock icon">
-                        <p class="recipe-card-time__text">${time}</p>
+                        <p class="recipe-card-time__text">${time} min</p>
                     </div>
                 </div>
                 <div class="recipe-card-description">
                     <ul class="recipe-card-description-list">
-                        <li class="recipe-card-description-list__text"><span class="recipe-card-description-list__text-bold">Poulet :</span> 1</li>
-                        <li class="recipe-card-description-list__text"><span class="recipe-card-description-list__text-bold">Lait de coco :</span> 400ml</li>
-                        <li class="recipe-card-description-list__text"><span class="recipe-card-description-list__text-bold">Coulis de tomate :</span> 25cl</li>
-                        <li class="recipe-card-description-list__text"><span class="recipe-card-description-list__text-bold">Oignon :</span> 1</li>
-                        <li class="recipe-card-description-list__text"><span class="recipe-card-description-list__text-bold">Poivron rouge :</span> 1</li>
+                        ${generateIngredients(ingredients)}
                     </ul>
                     <p class="recipe-card-description-block">${description}
                     </p>
@@ -61,7 +59,6 @@ function indexArticleDOM(id, name, servings, ingredients, time, description, app
     </article>`;
     return articleDOM;
 }
-
 
 
 /**
