@@ -1,14 +1,16 @@
-.header__link {
-  margin: 40px 0 20px 0;
+.banner__link {
+  width: 270px;
+  margin: auto;
+  padding: 40px 0 20px 0;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-.header-logo {
+.banner-logo {
   height: 46px;
   margin: auto;
 }
-.header-title {
+.banner-title {
   margin: 0;
   color: #D04F4F;
   font-size: 36px;
@@ -362,6 +364,7 @@
 }
 .dropdown-section .dp-list__text:hover {
   font-weight: 700;
+  transition-duration: 0.5s;
 }
 
 .card-galery {

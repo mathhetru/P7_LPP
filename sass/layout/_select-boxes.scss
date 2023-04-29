@@ -38,7 +38,7 @@
             display: flex;
             flex-wrap: wrap;
             max-width: 667px;
-            &__text{
+            &__text{ 
                 cursor: pointer;
                 margin: 8px 0;
                 width: 33.3%;
@@ -48,6 +48,7 @@
                 font-weight: $light;
                 &:hover{
                     font-weight: $bold;
+                    transition-duration: 0.5s;
                 }
             }
         }
