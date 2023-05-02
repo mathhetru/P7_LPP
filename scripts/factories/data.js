@@ -1,5 +1,5 @@
 /**
- * Retourne le .json avec le tableau de photographes
+ * Retourne le .json avec le tableau des recettes
  * @returns {Promise<Array<Object>>}
  */
 export async function getData() {
