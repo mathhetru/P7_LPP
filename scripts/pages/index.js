@@ -1,5 +1,4 @@
 import { getData } from "../factories/data.js";
-import { generateRecipes } from "../factories/recipes.js";
 import { searchBar } from "../utils/searchBar.js";
 
 /**
@@ -7,7 +6,7 @@ import { searchBar } from "../utils/searchBar.js";
  * @param {Object} data 
  */
 async function displayRecipes(data) {
-    generateRecipes(data.recipes);
+    searchBar(data.recipes);
 }
 
 /**
@@ -16,7 +15,6 @@ async function displayRecipes(data) {
 async function init() {
     const recipes = await getData();
     displayRecipes(recipes);
-    searchBar();
 }
 
 init();
