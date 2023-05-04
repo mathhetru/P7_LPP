@@ -8,10 +8,12 @@
         display: flex;
         align-items: center;
         height: 69px;
-        min-width: 170px;
+        width: 170px;
         justify-content: space-between;
+        cursor: pointer;
+        transition: 350ms ease-out;
     }
-    &__text{
+    &__input{
         background-color: transparent;
         border: 0px;
         padding: 0 0 0 24px;
@@ -19,8 +21,11 @@
         font-weight: $bold;
         font-size: $large;
         color: $white;
+        cursor: pointer;
+        // opacity: 0.5;
         &::placeholder{
             color: $white;
+            opacity: 0.5;
         }
         &:focus-visible, &:focus{
             outline: none !important;
@@ -32,12 +37,18 @@
         background-color: transparent;
         border: none;
     }
-    &__icon{
-        margin: 0 15px;
-    }
     &:hover, &:focus{
         background-color: darken($color, 15%);
         transition-duration: 0.5s;
     }
+}
+
+.active{
+    width: 665px !important;
+}
+
+.rotate{
+    transform: rotate(180deg);
+    transition: 350ms ease-out;
 }
 

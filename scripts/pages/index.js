@@ -1,5 +1,6 @@
 import { getData } from "../factories/data.js";
 import { searchBar } from "../utils/searchBar.js";
+import { dropdownBoxes } from "../utils/dropdown.js";
 
 /**
  * Génère et affiche les recettes en asynchrone
@@ -7,6 +8,7 @@ import { searchBar } from "../utils/searchBar.js";
  */
 async function displayRecipes(data) {
     searchBar(data.recipes);
+    dropdownBoxes();
 }
 
 /**

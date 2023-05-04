@@ -33,28 +33,33 @@
             @include dropdown($orange);
             background-color: $orange;
         }
-        &-list{
+        &-list-ingredients, &-list-appareils, &-list-ustensiles{
+            transition: 450ms ease-out;
             padding: 0 24px 24px 24px;
             display: flex;
             flex-wrap: wrap;
             max-width: 667px;
-            &__text{ 
-                cursor: pointer;
-                margin: 8px 0;
-                width: 33.3%;
-                font-family: $lato;
-                font-size: $large;
-                color: $white;
-                font-weight: $light;
-                &:hover{
-                    font-weight: $bold;
-                    transition-duration: 0.5s;
-                }
+            max-height: 170px;
+            overflow-y: auto;
+        }
+        &-list__text{ 
+            cursor: pointer;
+            margin: 8px 0;
+            width: 33.3%;
+            font-family: $lato;
+            font-size: $large;
+            color: $white;
+            font-weight: $light;
+            &:hover{
+                font-weight: $bold;
+                transition-duration: 0.5s;
             }
         }
     }
 }
 
 .hide{
+    max-width: 0px !important;
+    max-height: 0px !important;
     display: none !important;
 }
