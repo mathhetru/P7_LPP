@@ -12,7 +12,6 @@ export function searchBar(recipes) {
     //ARRAYS
     let newSearchOfRecipes = [];
 
-
     searchBarInput.addEventListener("input", function () {
         const searchWord = searchBarInput.value.toLowerCase().trim();
         const lengthSearchWord = searchBarInput.value.length;
@@ -21,6 +20,10 @@ export function searchBar(recipes) {
             // remise à zéro du tableau de recettes cherchées
             newSearchOfRecipes = [];
 
+            // pour chaque recette, reprendre le nom, séparer les mots par les espaces.
+            // pour chaque mot, rechercher les premieres lettres selon le nombre de lettre inscrit dans la bar de recherche
+            // si les lettres inscrits dans la bar de recherche sont les mêmes que les lettres du nom de la recette
+            // alors ajouter cette recette dans le tableau 
             recipes.forEach(oneRecipe => {
                 const nameOfOneRecipe = oneRecipe.name;
                 let eachWordOfOneRecipe = nameOfOneRecipe.split(" ");

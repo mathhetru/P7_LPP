@@ -8,10 +8,10 @@
         display: flex;
         align-items: center;
         height: 69px;
+        min-width: 170px;
         justify-content: space-between;
     }
-    &__input{
-        height: 69px;
+    &__text{
         background-color: transparent;
         border: 0px;
         padding: 0 0 0 24px;
@@ -33,7 +33,7 @@
         border: none;
     }
     &__icon{
-        margin-left: 15px;
+        margin: 0 15px;
     }
     &:hover, &:focus{
         background-color: darken($color, 15%);
