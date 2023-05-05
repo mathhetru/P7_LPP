@@ -22,16 +22,16 @@ export function dropdownBoxes() {
 function openDropdown(dropdown, input, list, className) { 
     dropdown.addEventListener("click", function () {
         let result = list.classList.toggle("hide");
-        const btn = document.querySelector(className);
+        const btnArrow = document.querySelector(className);
 
         if (result) {
             dropdown.classList.remove("active");
-            btn.classList.remove("rotate");
+            btnArrow.classList.remove("rotate");
             input.setAttribute("type", "button");
             input.setAttribute("value", "Ingrédients");
         } else {
             dropdown.classList.add("active");
-            btn.classList.add("rotate");
+            btnArrow.classList.add("rotate");
             input.setAttribute("type", "text");
             input.setAttribute("value", "");
         }

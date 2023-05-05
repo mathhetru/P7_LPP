@@ -24,17 +24,17 @@ export function searchBar(recipes) {
             // alors ajouter cette recette dans le tableau 
             recipes.forEach(oneRecipe => {
                 const nameOfOneRecipe = oneRecipe.name;
-                let eachWordOfOneRecipe = nameOfOneRecipe.split(" ");
 
-                eachWordOfOneRecipe.forEach(oneWord => {
-                    // let letterOfWordTitle = oneWord.substring(0, lengthSearchWord).toLowerCase();
-                    // if (searchWord === letterOfWordTitle) {
-                    //     newSearchOfRecipes.push(oneRecipe);
-                    // }
-                    if (oneWord.toLowerCase().startsWith(searchWord)){
-                        newSearchOfRecipes.push(oneRecipe);
-                    }
-                });
+                if (nameOfOneRecipe.toLowerCase().includes(searchWord)) {
+                    newSearchOfRecipes.push(oneRecipe);
+                }
+
+                // let eachWordOfOneRecipe = nameOfOneRecipe.split(" ");
+                // eachWordOfOneRecipe.forEach(oneWord => {
+                //     if (oneWord.toLowerCase().startsWith(searchWord)){
+                //         newSearchOfRecipes.push(oneRecipe);
+                //     }
+                // });
             });
             generateRecipes(newSearchOfRecipes);
         } else {

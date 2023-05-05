@@ -1,5 +1,6 @@
 .active {
-  width: 665px !important;
+  width: 100% !important;
+  transition: 350ms ease-out;
 }
 
 .rotate {
@@ -229,8 +230,6 @@
 }
 .dropdown-section .dp-ingredients {
   margin-right: 20px;
-  display: flex;
-  flex-direction: column;
   min-height: 69px;
   border-radius: 5px;
   background-color: #3282F7;
@@ -239,10 +238,8 @@
   display: flex;
   align-items: center;
   height: 69px;
-  width: 170px;
   justify-content: space-between;
   cursor: pointer;
-  transition: 350ms ease-out;
 }
 .dropdown-section .dp-ingredients__input {
   background-color: transparent;
@@ -273,8 +270,6 @@
 }
 .dropdown-section .dp-appareils {
   margin-right: 20px;
-  display: flex;
-  flex-direction: column;
   min-height: 69px;
   border-radius: 5px;
   background-color: #68D9A4;
@@ -283,10 +278,8 @@
   display: flex;
   align-items: center;
   height: 69px;
-  width: 170px;
   justify-content: space-between;
   cursor: pointer;
-  transition: 350ms ease-out;
 }
 .dropdown-section .dp-appareils__input {
   background-color: transparent;
@@ -317,8 +310,6 @@
 }
 .dropdown-section .dp-ustensiles {
   margin-right: 20px;
-  display: flex;
-  flex-direction: column;
   min-height: 69px;
   border-radius: 5px;
   background-color: #ED6454;
@@ -327,10 +318,8 @@
   display: flex;
   align-items: center;
   height: 69px;
-  width: 170px;
   justify-content: space-between;
   cursor: pointer;
-  transition: 350ms ease-out;
 }
 .dropdown-section .dp-ustensiles__input {
   background-color: transparent;
@@ -360,7 +349,6 @@
   transition-duration: 0.5s;
 }
 .dropdown-section .dp-list-ingredients, .dropdown-section .dp-list-appareils, .dropdown-section .dp-list-ustensiles {
-  transition: 450ms ease-out;
   padding: 0 24px 24px 24px;
   display: flex;
   flex-wrap: wrap;

@@ -23,7 +23,7 @@
     .dp{
         &-ingredients{
             @include dropdown($blue);
-            background-color: $blue;
+            background-color: $blue;    
         }
         &-appareils{
             @include dropdown($green);
@@ -34,7 +34,6 @@
             background-color: $orange;
         }
         &-list-ingredients, &-list-appareils, &-list-ustensiles{
-            transition: 450ms ease-out;
             padding: 0 24px 24px 24px;
             display: flex;
             flex-wrap: wrap;
