@@ -235,6 +235,7 @@
   background-color: #3282F7;
 }
 .dropdown-section .dp-ingredients-block {
+  transition: width 350ms ease-out;
   display: flex;
   align-items: center;
   height: 69px;
@@ -275,6 +276,7 @@
   background-color: #68D9A4;
 }
 .dropdown-section .dp-appareils-block {
+  transition: width 350ms ease-out;
   display: flex;
   align-items: center;
   height: 69px;
@@ -315,6 +317,7 @@
   background-color: #ED6454;
 }
 .dropdown-section .dp-ustensiles-block {
+  transition: width 350ms ease-out;
   display: flex;
   align-items: center;
   height: 69px;

@@ -18,10 +18,8 @@ export function searchBar(recipes) {
             // remise à zéro du tableau de recettes cherchées
             newSearchOfRecipes = [];
 
-            // pour chaque recette, reprendre le nom, séparer les mots par les espaces.
-            // pour chaque mot, rechercher les premieres lettres selon le nombre de lettre inscrit dans la bar de recherche
-            // si les lettres inscrits dans la bar de recherche sont les mêmes que les lettres du nom de la recette
-            // alors ajouter cette recette dans le tableau 
+            // ! changer par un filter() et faire la recherche sur les ingrédients et la description
+            // pour chaque recette, reprendre le nom, si le mot recherché est inclus dans un des mots du nom alors ajouter cette recette dans le tableau 
             recipes.forEach(oneRecipe => {
                 const nameOfOneRecipe = oneRecipe.name;
 
@@ -29,6 +27,7 @@ export function searchBar(recipes) {
                     newSearchOfRecipes.push(oneRecipe);
                 }
 
+                //* OLD CODE
                 // let eachWordOfOneRecipe = nameOfOneRecipe.split(" ");
                 // eachWordOfOneRecipe.forEach(oneWord => {
                 //     if (oneWord.toLowerCase().startsWith(searchWord)){

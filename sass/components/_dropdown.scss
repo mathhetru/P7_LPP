@@ -3,6 +3,7 @@
     min-height: 69px;
     border-radius: 5px;
     &-block{
+        transition: width 350ms ease-out;
         display: flex;
         align-items: center;
         height: 69px;

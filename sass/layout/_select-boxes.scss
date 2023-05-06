@@ -34,6 +34,7 @@
             background-color: $orange;
         }
         &-list-ingredients, &-list-appareils, &-list-ustensiles{
+            // transition: height 450ms ease-out;
             padding: 0 24px 24px 24px;
             display: flex;
             flex-wrap: wrap;
