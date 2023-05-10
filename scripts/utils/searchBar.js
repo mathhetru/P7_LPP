@@ -10,10 +10,15 @@ export function searchBar(recipes) {
     searchBarInput.addEventListener("input", function () {
         const searchWord = searchBarInput.value.toLowerCase().trim();
         const lengthSearchWord = searchWord.length;
+        const oupsSentence = document.querySelector(".main-oups");
 
         if (lengthSearchWord > 2) {
             // ARRAYS
             let newSearchOfRecipes = [];
+            let arrayOfIngredients = [];
+            let arrayOfAppliance = [];
+            let arrayOfUstensils = [];
+
             // let newSearchPerName = [];
             // let newSearchPerIngredients = [];
             // let newSearchPerDescription = [];
@@ -44,10 +49,16 @@ export function searchBar(recipes) {
             // console.log(newSearchPerIngredients);
             // console.log(newSearchPerDescription);
 
+            if (newSearchOfRecipes.length === 0) {
+                oupsSentence.classList.remove("hide");
+            }
+
             recipes.forEach(oneRecipe => {
                 if (oneRecipe.name.toLowerCase().includes(searchWord)) {
+                    oupsSentence.classList.add("hide");
                     newSearchOfRecipes.push(oneRecipe);
                 } else if (oneRecipe.description.toLowerCase().includes(searchWord)) {
+                    oupsSentence.classList.add("hide");
                     newSearchOfRecipes.push(oneRecipe);
                 } else {
                     // const ingredientsMatchingWithSearchWord = oneRecipe.ingredients.filter(oneIngredient => oneIngredient.ingredient.toLowerCase().includes(searchWord));
@@ -55,13 +66,14 @@ export function searchBar(recipes) {
                     const ingredientsMatchingWithSearchWord = ingredientsOfOneRecipe.filter(oneIngredient => oneIngredient.ingredient.toLowerCase().includes(searchWord));
                     
                     if (ingredientsMatchingWithSearchWord.length != 0) {
+                        oupsSentence.classList.add("hide");
                         newSearchOfRecipes.push(oneRecipe);
                     } 
-                }
+                } 
             });
-
             generateRecipes(newSearchOfRecipes);
         } else {
+            oupsSentence.classList.add("hide");
             generateRecipes(recipes);
         };
     });
