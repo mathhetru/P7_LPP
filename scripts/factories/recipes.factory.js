@@ -4,7 +4,7 @@
  */
 export function generateRecipes(recipes) {
     const recipesListDOM = recipes.map((oneRecipe) => {
-        return indexArticleDOM(
+        return indexRecipeDOM(
             oneRecipe.id,
             oneRecipe.name,
             oneRecipe.ingredients,
@@ -24,8 +24,8 @@ export function generateRecipes(recipes) {
  * @param {string} description 
  * @returns {string}
  */
-function indexArticleDOM(id, name, ingredients, time, description) {
-    const articleDOM = `
+function indexRecipeDOM(id, name, ingredients, time, description) {
+    const recipeDOM = `
     <article class="recipe-card" data-recipe-id="${id}">
         <a href="#" class="recipe-card__link">
             <div class="recipe-card-picture">
@@ -49,7 +49,7 @@ function indexArticleDOM(id, name, ingredients, time, description) {
             </div>
         </a>
     </article>`;
-    return articleDOM;
+    return recipeDOM;
 }
 
 /**

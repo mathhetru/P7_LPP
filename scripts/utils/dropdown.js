@@ -14,12 +14,12 @@ export function dropdownBoxes() {
     const dpListAppareils = document.querySelector(".dp-list-appareils");
     const dpListUstensiles = document.querySelector(".dp-list-ustensiles");
 
-    openDropdown(dropdownIngredients, dpInputIngredients, dpListIngredients, ".dp-ingredients__btn");
-    openDropdown(dropdownAppareils, dpInputAppareils, dpListAppareils, ".dp-appareils__btn");
-    openDropdown(dropdownUstensiles, dpInputUstensiles, dpListUstensiles, ".dp-ustensiles__btn");
+    openDropdown(dropdownIngredients, dpInputIngredients, dpListIngredients, ".dp-ingredients__btn", "Ingrédients");
+    openDropdown(dropdownAppareils, dpInputAppareils, dpListAppareils, ".dp-appareils__btn", "Appareils");
+    openDropdown(dropdownUstensiles, dpInputUstensiles, dpListUstensiles, ".dp-ustensiles__btn", "Ustensiles");
 }
 
-function openDropdown(dropdown, input, list, className) { 
+function openDropdown(dropdown, input, list, className, name) { 
     dropdown.addEventListener("click", function () {
         let result = list.classList.toggle("hide");
         const btnArrow = document.querySelector(className);
@@ -28,7 +28,7 @@ function openDropdown(dropdown, input, list, className) {
             dropdown.classList.remove("active");
             btnArrow.classList.remove("rotate");
             input.setAttribute("type", "button");
-            input.setAttribute("value", "Ingrédients");
+            input.setAttribute("value", name);
         } else {
             dropdown.classList.add("active");
             btnArrow.classList.add("rotate");
@@ -37,3 +37,4 @@ function openDropdown(dropdown, input, list, className) {
         }
     });
 }
+

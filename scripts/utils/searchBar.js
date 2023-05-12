@@ -1,4 +1,5 @@
-import { generateRecipes } from "../factories/recipes.js";
+import { generateRecipes } from "../factories/recipes.factory.js";
+import { generateDPIngredientsDOM } from "../factories/dropdown.factory.js";
 
 export function searchBar(recipes) {
     //DOM
@@ -14,83 +15,60 @@ export function searchBar(recipes) {
 
         if (lengthSearchWord > 2) {
             // ARRAYS
-            let newSearchOfRecipes = [];
             let arrayOfIngredients = [];
             let arrayOfAppliance = [];
             let arrayOfUstensils = [];
 
-            // let newSearchPerName = [];
-            // let newSearchPerIngredients = [];
-            // let newSearchPerDescription = [];
-
-            // // filtrer chaque recette par le mot recherché et l'ajouter au tableau
-            // newSearchPerName = recipes.filter(oneRecipe => oneRecipe.name.toLowerCase().includes(searchWord));
-
-            // // filtrer chaque description de recette par le mot recherché et l'ajouter au tableau
-            // newSearchPerDescription = recipes.filter(oneRecipe => oneRecipe.description.toLowerCase().includes(searchWord));
-            
-            // //* OTHER METHOD FOR INGREDIENTS w filter(): 
-            // // newSearchPerIngredients = recipes.filter(oneRecipe => oneRecipe.ingredients.filter(oneIngredient => oneIngredient.ingredient.toLowerCase().includes(searchWord)));
-            // // if (ingredientsMatchingWithSearchWord != ""){
-            // //     newSearchPerIngredients.push(oneRecipe);
-            // // };
-            
-            // // pour chaque recette, filtrer les ingrédients par le mot recherché et l'ajouter au tableau
-            // recipes.forEach(oneRecipe => {
-            //     const ingredientsOfOneRecipe = oneRecipe.ingredients;
-            //     const ingredientsMatchingWithSearchWord = ingredientsOfOneRecipe.filter(oneIngredient => oneIngredient.ingredient.toLowerCase().includes(searchWord));
-
-            //     if (ingredientsMatchingWithSearchWord != ""){
-            //         newSearchPerIngredients.push(oneRecipe);
-            //     }             
-            // });
-
-            // console.log(newSearchPerName);
-            // console.log(newSearchPerIngredients);
-            // console.log(newSearchPerDescription);
+            // filtrer chaque recette par le mot recherché et l'ajouter au tableau
+            const newSearchOfRecipes = recipes.filter(oneRecipe => filterPerSearchWord(oneRecipe, searchWord));
 
             if (newSearchOfRecipes.length === 0) {
                 oupsSentence.classList.remove("hide");
+            } else {
+                oupsSentence.classList.add("hide");
             }
 
-            recipes.forEach(oneRecipe => {
-                if (oneRecipe.name.toLowerCase().includes(searchWord)) {
-                    oupsSentence.classList.add("hide");
-                    newSearchOfRecipes.push(oneRecipe);
-                } else if (oneRecipe.description.toLowerCase().includes(searchWord)) {
-                    oupsSentence.classList.add("hide");
-                    newSearchOfRecipes.push(oneRecipe);
-                } else {
-                    // const ingredientsMatchingWithSearchWord = oneRecipe.ingredients.filter(oneIngredient => oneIngredient.ingredient.toLowerCase().includes(searchWord));
-                    const ingredientsOfOneRecipe = oneRecipe.ingredients;
-                    const ingredientsMatchingWithSearchWord = ingredientsOfOneRecipe.filter(oneIngredient => oneIngredient.ingredient.toLowerCase().includes(searchWord));
+            // recipes.forEach(oneRecipe => {
+            //     if (oneRecipe.name.toLowerCase().includes(searchWord)) {
+            //         oupsSentence.classList.add("hide");
+            //         newSearchOfRecipes.push(oneRecipe); 
+            //         arrayOfIngredients.push(oneRecipe.ingredients);
+            //     } else if (oneRecipe.description.toLowerCase().includes(searchWord)) {
+            //         oupsSentence.classList.add("hide");
+            //         newSearchOfRecipes.push(oneRecipe);
+            //         arrayOfIngredients.push(oneRecipe.ingredients);
+            //     } else {
+            //         // const ingredientsMatchingWithSearchWord = oneRecipe.ingredients.filter(oneIngredient => oneIngredient.ingredient.toLowerCase().includes(searchWord));
+            //         const ingredientsOfOneRecipe = oneRecipe.ingredients;
+            //         const ingredientsMatchingWithSearchWord = ingredientsOfOneRecipe.filter(oneIngredient => oneIngredient.ingredient.toLowerCase().includes(searchWord));
                     
-                    if (ingredientsMatchingWithSearchWord.length != 0) {
-                        oupsSentence.classList.add("hide");
-                        newSearchOfRecipes.push(oneRecipe);
-                    } 
-                } 
-            });
+            //         if (ingredientsMatchingWithSearchWord.length != 0) {
+            //             oupsSentence.classList.add("hide");
+            //             newSearchOfRecipes.push(oneRecipe);
+            //             arrayOfIngredients.push(oneRecipe.ingredients);
+            //         } 
+            //     } 
+            // });
+
             generateRecipes(newSearchOfRecipes);
         } else {
-            oupsSentence.classList.add("hide");
             generateRecipes(recipes);
         };
     });
 }
 
-// function filterPerSearchWord(recipe, mot) {
-//     if (recipe.name.toLowerCase().includes(mot)) {
-//         return true;
-//     } else if (recipe.description.toLowerCase().includes(mot)) {
-//         return true;
-//     } else {
-//         const ingredientsMatchingWithSearchWord = recipe.ingredients.filter(oneIngredient => oneIngredient.ingredient.toLowerCase().includes(mot));
-//         if (ingredientsMatchingWithSearchWord.length === 0) {
-//             return false;
-//         } else {
-//             return true;
-//         }
-//     }
-// }
+function filterPerSearchWord(recipe, word) {
+    if (recipe.name.toLowerCase().includes(word)) {
+        return true;
+    } else if (recipe.description.toLowerCase().includes(word)) {
+        return true;
+    } else {
+        const ingredientsMatchingWithSearchWord = recipe.ingredients.filter(oneIngredient => oneIngredient.ingredient.toLowerCase().includes(word));
+        if (ingredientsMatchingWithSearchWord.length === 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
 
