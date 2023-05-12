@@ -27,29 +27,7 @@ export function searchBar(recipes) {
             } else {
                 oupsSentence.classList.add("hide");
             }
-
-            // recipes.forEach(oneRecipe => {
-            //     if (oneRecipe.name.toLowerCase().includes(searchWord)) {
-            //         oupsSentence.classList.add("hide");
-            //         newSearchOfRecipes.push(oneRecipe); 
-            //         arrayOfIngredients.push(oneRecipe.ingredients);
-            //     } else if (oneRecipe.description.toLowerCase().includes(searchWord)) {
-            //         oupsSentence.classList.add("hide");
-            //         newSearchOfRecipes.push(oneRecipe);
-            //         arrayOfIngredients.push(oneRecipe.ingredients);
-            //     } else {
-            //         // const ingredientsMatchingWithSearchWord = oneRecipe.ingredients.filter(oneIngredient => oneIngredient.ingredient.toLowerCase().includes(searchWord));
-            //         const ingredientsOfOneRecipe = oneRecipe.ingredients;
-            //         const ingredientsMatchingWithSearchWord = ingredientsOfOneRecipe.filter(oneIngredient => oneIngredient.ingredient.toLowerCase().includes(searchWord));
-                    
-            //         if (ingredientsMatchingWithSearchWord.length != 0) {
-            //             oupsSentence.classList.add("hide");
-            //             newSearchOfRecipes.push(oneRecipe);
-            //             arrayOfIngredients.push(oneRecipe.ingredients);
-            //         } 
-            //     } 
-            // });
-
+            
             generateRecipes(newSearchOfRecipes);
         } else {
             generateRecipes(recipes);
