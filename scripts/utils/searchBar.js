@@ -1,18 +1,19 @@
 import { generateRecipes } from "../factories/recipes.factory.js";
-import { generateDPIngredientsDOM } from "../factories/dropdown.factory.js";
+import { generateDPListDOM } from "../factories/dropdown.factory.js";
 
 export function searchBar(recipes) {
     //DOM
     const searchBarInput = document.querySelector(".search-bar__input");
 
     // ARRAYS of all items
-    let allIngredients = recipes.map(newSearchOfRecipes => newSearchOfRecipes.ingredients).flat();
+    let allArrayOfIngredients = recipes.map(recipes => recipes.ingredients).flat();
+    let allIngredients = allArrayOfIngredients.map(allArrayOfIngredients => allArrayOfIngredients.ingredient.toLowerCase());
     let allAppliance = [];
     let allUstensils = [];
 
-    // Genère les recettes par défaut
+    // Generate recipes by default
     generateRecipes(recipes);
-    generateDPIngredientsDOM(allIngredients);
+    generateDPListDOM(allIngredients, ".dp-list-ingredients");
 
     searchBarInput.addEventListener("input", function () {
         const searchWord = searchBarInput.value.toLowerCase().trim();
@@ -23,14 +24,10 @@ export function searchBar(recipes) {
 
             // filter each recipe with the search word and add in the array
             const newSearchOfRecipes = recipes.filter(oneRecipe => filterPerSearchWord(oneRecipe, searchWord));
-            // console.log(newSearchOfRecipes);
 
             // ARRAYS of items searched
-            let allIngredientsOfRecipesSearched = newSearchOfRecipes.flatMap(newSearchOfRecipes => newSearchOfRecipes.ingredients);
-            let ingredientsOfRecipesSearched = new Set(allIngredientsOfRecipesSearched);
-
-            console.log(allIngredientsOfRecipesSearched);
-            console.log(ingredientsOfRecipesSearched);
+            let allArrayOfIngredientsOfRecipesSearched = newSearchOfRecipes.flatMap(newSearchOfRecipes => newSearchOfRecipes.ingredients);
+            let allIngredientsOfRecipesSearched = allArrayOfIngredientsOfRecipesSearched.map(allArrayOfIngredientsOfRecipesSearched => allArrayOfIngredientsOfRecipesSearched.ingredient.toLowerCase());
 
             let applianceOfRecipesSearched = [];
             let ustensilsOfRecipesSearched = [];
@@ -42,10 +39,10 @@ export function searchBar(recipes) {
             }
             
             generateRecipes(newSearchOfRecipes);
-            generateDPIngredientsDOM(ingredientsOfRecipesSearched);
+            generateDPListDOM(allIngredientsOfRecipesSearched, ".dp-list-ingredients");
         } else {
             generateRecipes(recipes);
-            generateDPIngredientsDOM(allIngredients);
+            generateDPListDOM(allIngredients, ".dp-list-ingredients");
         };
     });
 }

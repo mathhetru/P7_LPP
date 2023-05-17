@@ -1,9 +1,11 @@
-export function generateDPIngredientsDOM(ingredients) {
-    console.log(ingredients);
-    const dpIngredientsListDOM = ingredients.map((oneIngredient) => {
+export function generateDPListDOM(list, className) {
+    let listUnique = [...new Set(list)];
+    // console.log(ingredients);
+    // console.log(ingredientsUnique);
+    const dpItemListDOM = listUnique.map((oneItem) => {
     return `
-        <p class="dp-list__text">${oneIngredient.ingredient}</p>
+        <p class="dp-list__text">${oneItem}</p>
         `;
     });
-    document.querySelector(".dp-list-ingredients").innerHTML = dpIngredientsListDOM.join("");
+    document.querySelector(className).innerHTML = dpItemListDOM.join("");
 }
