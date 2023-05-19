@@ -6,14 +6,19 @@ export function searchBar(recipes) {
     const searchBarInput = document.querySelector(".search-bar__input");
 
     // ARRAYS of all items
-    let allArrayOfIngredients = recipes.map(recipes => recipes.ingredients).flat();
+    let allArrayOfIngredients = recipes.flatMap(recipes => recipes.ingredients);
     let allIngredients = allArrayOfIngredients.map(allArrayOfIngredients => allArrayOfIngredients.ingredient.toLowerCase());
-    let allAppliance = [];
-    let allUstensils = [];
+
+    let allAppliance = recipes.map(recipes => recipes.appliance.toLowerCase());
+
+    let allUstensilsUpperCase = recipes.flatMap(recipes => recipes.ustensils);
+    let allUstensils = allUstensilsUpperCase.map(allUstensilsUpperCase => allUstensilsUpperCase.toLowerCase());
 
     // Generate recipes by default
     generateRecipes(recipes);
     generateDPListDOM(allIngredients, ".dp-list-ingredients");
+    generateDPListDOM(allAppliance, ".dp-list-appareils");
+    generateDPListDOM(allUstensils, ".dp-list-ustensiles");
 
     searchBarInput.addEventListener("input", function () {
         const searchWord = searchBarInput.value.toLowerCase().trim();
@@ -29,8 +34,10 @@ export function searchBar(recipes) {
             let allArrayOfIngredientsOfRecipesSearched = newSearchOfRecipes.flatMap(newSearchOfRecipes => newSearchOfRecipes.ingredients);
             let allIngredientsOfRecipesSearched = allArrayOfIngredientsOfRecipesSearched.map(allArrayOfIngredientsOfRecipesSearched => allArrayOfIngredientsOfRecipesSearched.ingredient.toLowerCase());
 
-            let applianceOfRecipesSearched = [];
-            let ustensilsOfRecipesSearched = [];
+            let appliancesOfRecipesSearched = newSearchOfRecipes.map(newSearchOfRecipes => newSearchOfRecipes.appliance.toLowerCase());
+
+            let ustensilsOfRecipesSearchedUpperCase = newSearchOfRecipes.flatMap(newSearchOfRecipes => newSearchOfRecipes.ustensils);
+            let ustensilsOfRecipesSearched = ustensilsOfRecipesSearchedUpperCase.map(ustensilsOfRecipesSearchedUpperCase => ustensilsOfRecipesSearchedUpperCase.toLowerCase());
 
             if (newSearchOfRecipes.length === 0) {
                 oupsSentence.classList.remove("hide");
@@ -40,9 +47,13 @@ export function searchBar(recipes) {
             
             generateRecipes(newSearchOfRecipes);
             generateDPListDOM(allIngredientsOfRecipesSearched, ".dp-list-ingredients");
+            generateDPListDOM(appliancesOfRecipesSearched, ".dp-list-appareils");
+            generateDPListDOM(ustensilsOfRecipesSearched, ".dp-list-ustensiles");
         } else {
             generateRecipes(recipes);
             generateDPListDOM(allIngredients, ".dp-list-ingredients");
+            generateDPListDOM(allAppliance, ".dp-list-appareils");
+            generateDPListDOM(allUstensils, ".dp-list-ustensiles");
         };
     });
 }
