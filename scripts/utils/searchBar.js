@@ -5,20 +5,8 @@ export function searchBar(recipes) {
     //DOM
     const searchBarInput = document.querySelector(".search-bar__input");
 
-    // ARRAYS of all items
-    let allArrayOfIngredients = recipes.flatMap(recipes => recipes.ingredients);
-    let allIngredients = allArrayOfIngredients.map(allArrayOfIngredients => allArrayOfIngredients.ingredient.toLowerCase());
-
-    let allAppliance = recipes.map(recipes => recipes.appliance.toLowerCase());
-
-    let allUstensilsUpperCase = recipes.flatMap(recipes => recipes.ustensils);
-    let allUstensils = allUstensilsUpperCase.map(allUstensilsUpperCase => allUstensilsUpperCase.toLowerCase());
-
-    // Generate recipes by default
-    generateRecipes(recipes);
-    generateDPListDOM(allIngredients, ".dp-list-ingredients");
-    generateDPListDOM(allAppliance, ".dp-list-appareils");
-    generateDPListDOM(allUstensils, ".dp-list-ustensiles");
+    // generate recipes and ARRAYS of all items
+    getRecipesAndLists(recipes);
 
     searchBarInput.addEventListener("input", function () {
         const searchWord = searchBarInput.value.toLowerCase().trim();
@@ -30,30 +18,18 @@ export function searchBar(recipes) {
             // filter each recipe with the search word and add in the array
             const newSearchOfRecipes = recipes.filter(oneRecipe => filterPerSearchWord(oneRecipe, searchWord));
 
-            // ARRAYS of items searched
-            let allArrayOfIngredientsOfRecipesSearched = newSearchOfRecipes.flatMap(newSearchOfRecipes => newSearchOfRecipes.ingredients);
-            let allIngredientsOfRecipesSearched = allArrayOfIngredientsOfRecipesSearched.map(allArrayOfIngredientsOfRecipesSearched => allArrayOfIngredientsOfRecipesSearched.ingredient.toLowerCase());
-
-            let appliancesOfRecipesSearched = newSearchOfRecipes.map(newSearchOfRecipes => newSearchOfRecipes.appliance.toLowerCase());
-
-            let ustensilsOfRecipesSearchedUpperCase = newSearchOfRecipes.flatMap(newSearchOfRecipes => newSearchOfRecipes.ustensils);
-            let ustensilsOfRecipesSearched = ustensilsOfRecipesSearchedUpperCase.map(ustensilsOfRecipesSearchedUpperCase => ustensilsOfRecipesSearchedUpperCase.toLowerCase());
+            // generate recipes searched and ARRAYS of items searched
+            getRecipesAndLists(newSearchOfRecipes);
 
             if (newSearchOfRecipes.length === 0) {
                 oupsSentence.classList.remove("hide");
             } else {
                 oupsSentence.classList.add("hide");
             }
-            
-            generateRecipes(newSearchOfRecipes);
-            generateDPListDOM(allIngredientsOfRecipesSearched, ".dp-list-ingredients");
-            generateDPListDOM(appliancesOfRecipesSearched, ".dp-list-appareils");
-            generateDPListDOM(ustensilsOfRecipesSearched, ".dp-list-ustensiles");
+
         } else {
-            generateRecipes(recipes);
-            generateDPListDOM(allIngredients, ".dp-list-ingredients");
-            generateDPListDOM(allAppliance, ".dp-list-appareils");
-            generateDPListDOM(allUstensils, ".dp-list-ustensiles");
+            // generate recipes and ARRAYS of all items
+            getRecipesAndLists(recipes);
         };
     });
 }
@@ -73,3 +49,17 @@ function filterPerSearchWord(recipe, word) {
     }
 }
 
+function getRecipesAndLists(recipes){
+    const allArrayOfIngredients = recipes.flatMap(recipes => recipes.ingredients);
+    const allIngredients = allArrayOfIngredients.map(allArrayOfIngredients => allArrayOfIngredients.ingredient.toLowerCase());
+
+    const allAppliance = recipes.map(recipes => recipes.appliance.toLowerCase());
+
+    const allUstensilsUpperCase = recipes.flatMap(recipes => recipes.ustensils);
+    const allUstensils = allUstensilsUpperCase.map(allUstensilsUpperCase => allUstensilsUpperCase.toLowerCase());
+
+    generateRecipes(recipes);
+    generateDPListDOM(allIngredients, ".dp-list-ingredients");
+    generateDPListDOM(allAppliance, ".dp-list-appareils");
+    generateDPListDOM(allUstensils, ".dp-list-ustensiles");
+}

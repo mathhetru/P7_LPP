@@ -4,36 +4,46 @@ export function dropdownBoxes() {
     const dropdownAppareils = document.querySelector(".dp-appareils-block");
     const dropdownUstensiles = document.querySelector(".dp-ustensiles-block");
 
-    //DOM inputs
-    const dpInputIngredients = document.querySelector(".dp-ingredients__input");
-    const dpInputAppareils = document.querySelector(".dp-appareils__input");
-    const dpInputUstensiles = document.querySelector(".dp-ustensiles__input");
-
     //DOM lists
     const dpListIngredients = document.querySelector(".dp-list-ingredients");
     const dpListAppareils = document.querySelector(".dp-list-appareils");
     const dpListUstensiles = document.querySelector(".dp-list-ustensiles");
 
-    openDropdown(dropdownIngredients, dpInputIngredients, dpListIngredients, ".dp-ingredients__btn", "Ingrédients");
-    openDropdown(dropdownAppareils, dpInputAppareils, dpListAppareils, ".dp-appareils__btn", "Appareils");
-    openDropdown(dropdownUstensiles, dpInputUstensiles, dpListUstensiles, ".dp-ustensiles__btn", "Ustensiles");
+    openDropdown(dropdownIngredients, dpListIngredients, "Ingrédients");
+    openDropdown(dropdownAppareils, dpListAppareils, "Appareils");
+    openDropdown(dropdownUstensiles, dpListUstensiles, "Ustensiles");
 }
 
-function openDropdown(dropdown, input, list, className, name) { 
+function openDropdown(dropdown, list, name) { 
     dropdown.addEventListener("click", function () {
-        let result = list.classList.toggle("hide");
-        const btnArrow = document.querySelector(className);
+        const allLists = document.querySelectorAll(".js-list");
+        const allBlocks = document.querySelectorAll(".js-block");
+        
+        allLists.forEach(eachList => {
+            eachList.classList.add("hide");
+            list.classList.remove("hide");
+        });
+        
+        allBlocks.forEach(eachBlock => {
+            eachBlock.classList.remove("active");
+            eachBlock.firstElementChild.setAttribute("type", "button");
+            eachBlock.firstElementChild.setAttribute("value", name);
+            eachBlock.lastElementChild.classList.remove("rotate");
+        });
 
-        if (result) {
-            dropdown.classList.remove("active");
-            btnArrow.classList.remove("rotate");
-            input.setAttribute("type", "button");
-            input.setAttribute("value", name);
+        if (list.classList.contains("hide")) {
+            console.log("toto")
+            list.classList.add("hide");
+            this.classList.remove("active");
+            this.firstElementChild.setAttribute("type", "button");
+            this.firstElementChild.setAttribute("value", name);
+            this.lastElementChild.classList.remove("rotate");
         } else {
-            dropdown.classList.add("active");
-            btnArrow.classList.add("rotate");
-            input.setAttribute("type", "text");
-            input.setAttribute("value", "");
+            console.log("tutu")
+            this.classList.add("active");
+            this.firstElementChild.setAttribute("type", "text");
+            this.firstElementChild.setAttribute("value", "");
+            this.lastElementChild.classList.add("rotate");
         }
     });
 }
