@@ -32,6 +32,7 @@
   height: 69px;
   background-color: #E7E7E7;
   border-radius: 5px;
+  margin-bottom: 20px;
 }
 .search-bar__input {
   width: 95%;
@@ -147,7 +148,6 @@
 
 .tag-block {
   display: flex;
-  margin-top: 20px;
   align-items: center;
 }
 .tag-block-blue {
@@ -159,6 +159,7 @@
   height: 37px;
   border-radius: 5px;
   background-color: #3282F7;
+  margin-bottom: 20px;
 }
 .tag-block-blue__text {
   font-family: "Lato", sans-serif;
@@ -183,6 +184,7 @@
   height: 37px;
   border-radius: 5px;
   background-color: #68D9A4;
+  margin-bottom: 20px;
 }
 .tag-block-green__text {
   font-family: "Lato", sans-serif;
@@ -207,6 +209,7 @@
   height: 37px;
   border-radius: 5px;
   background-color: #ED6454;
+  margin-bottom: 20px;
 }
 .tag-block-orange__text {
   font-family: "Lato", sans-serif;
@@ -225,7 +228,6 @@
 
 .dropdown-section {
   display: flex;
-  margin-top: 20px;
   align-items: flex-start;
 }
 .dropdown-section .dp-ingredients {

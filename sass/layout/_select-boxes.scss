@@ -1,24 +1,25 @@
 .tag-block{
     display: flex;
-    margin-top: 20px;
     align-items: center;
     &-blue{
         @include tag($blue);
         background-color: $blue;
+        margin-bottom: 20px;
     }
     &-green{
         @include tag($green);
         background-color: $green;
+        margin-bottom: 20px;
     }
     &-orange{
         @include tag($orange);
         background-color: $orange;
+        margin-bottom: 20px;
     }
 }
 
 .dropdown-section{
     display: flex;
-    margin-top: 20px;
     align-items: flex-start;
     .dp{
         &-ingredients{
