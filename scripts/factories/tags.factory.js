@@ -1,26 +1,32 @@
-export function blueTagDOM(tag) {
-    const tagDOM = `
+export function blueTagDOM(arrayOfTags) {
+    const tagDOM = arrayOfTags.map((oneTag) => {
+    return `
     <div class="tag-block-blue">
-        <p class="tag-block-blue__text">${tag}</p>
-        <img src="assets/icons/LPP_close.svg" class="tag-block-blue__icon" alt="search icon">
+        <p class="tag-block-blue__text">${oneTag.innerHTML}</p>
+        <img src="assets/icons/LPP_close.svg" class="tag-block-blue__icon" alt="close icon">
     </div>`;
-    return document.querySelector(".tag-block").innerHTML = tagDOM;
+    });
+    document.querySelector(".tag-block").innerHTML = tagDOM.join("");
 }
 
-export function greenTagDOM(tag) {
-    const tagDOM = `
+export function greenTagDOM(arrayOfTags) {
+    const tagDOM = arrayOfTags.map((oneTag) => {
+    return `
     <div class="tag-block-green">
-        <p class="tag-block-green__text">${tag}</p>
-        <img src="assets/icons/LPP_close.svg" class="tag-block-green__icon" alt="search icon">
+        <p class="tag-block-green__text">${oneTag.innerHTML}</p>
+        <img src="assets/icons/LPP_close.svg" class="tag-block-green__icon" alt="close icon">
     </div>`;
-    return document.querySelector(".tag-block").innerHTML = tagDOM;
+    });
+    document.querySelector(".tag-block").innerHTML = tagDOM.join("");
 }
 
-export function orangeTagDOM(tag) {
-    const tagDOM = `
+export function orangeTagDOM(arrayOfTags) {
+    const tagDOM = arrayOfTags.map((oneTag) => {
+    return `
     <div class="tag-block-orange">
-        <p class="tag-block-orange__text">${tag}</p>
-        <img src="assets/icons/LPP_close.svg" class="tag-block-orange__icon" alt="search icon">
+        <p class="tag-block-orange__text">${oneTag.innerHTML}</p>
+        <img src="assets/icons/LPP_close.svg" class="tag-block-orange__icon" alt="close icon">
     </div>`;
-    return document.querySelector(".tag-block").innerHTML = tagDOM;
+    });
+    document.querySelector(".tag-block").innerHTML = tagDOM.join("");
 }

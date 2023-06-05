@@ -9,16 +9,23 @@ export function generateTags() {
     const listAppareils = document.querySelector(".dp-list-appareils").querySelectorAll(".dp-list__text");
     const listUstensiles = document.querySelector(".dp-list-ustensiles").querySelectorAll(".dp-list__text");
 
-    generateTagOnClick(listIngredients, blueTagDOM);
-    generateTagOnClick(listAppareils, greenTagDOM);
-    generateTagOnClick(listUstensiles, orangeTagDOM);
+    //Arrays
+    const allTags = new Array;
+    const allIngredients = new Array;
+    const allAppareilTags = new Array;
+    const allUstensileTags = new Array;
+
+    generateTagOnClick(listIngredients, allIngredients, blueTagDOM);
+    generateTagOnClick(listAppareils, allAppareilTags, greenTagDOM);
+    generateTagOnClick(listUstensiles, allUstensileTags, orangeTagDOM);
 }
 
-function generateTagOnClick(list, tagDOM) {
+function generateTagOnClick(list, array, tagDOM) {
     list.forEach(element => {
-        // console.log(eachIngredient.innerText);
-        element.addEventListener("click", function () {
-            tagDOM(element.innerText);
+        element.addEventListener("click", function clickHandler() {
+            array.push(element);
+            tagDOM(array);
+            element.removeEventListener("click", clickHandler);
         });
     });
 };

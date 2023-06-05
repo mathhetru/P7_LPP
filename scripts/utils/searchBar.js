@@ -1,11 +1,15 @@
 import { generateRecipes } from "../factories/recipes.factory.js";
 import { generateDPListDOM } from "../factories/dropdown.factory.js";
 
+/**
+ * Genère les recettes affichées, de base ou selon le mot de recherche
+ * @param {Object} recipes 
+ */
 export function searchBar(recipes) {
     //DOM
     const searchBarInput = document.querySelector(".search-bar__input");
 
-    // generate recipes and ARRAYS of all items
+    // Génère toutes les recettes et tout le contenu des arrays des dropdowns
     getRecipesAndLists(recipes);
 
     searchBarInput.addEventListener("input", function () {
@@ -14,11 +18,10 @@ export function searchBar(recipes) {
         const oupsSentence = document.querySelector(".main-oups");
 
         if (lengthSearchWord > 2) {
-
-            // filter each recipe with the search word and add in the array
+            // Filtre chaque recette d'après le mot de recherche et l'ajoute dans l'array
             const newSearchOfRecipes = recipes.filter(oneRecipe => filterPerSearchWord(oneRecipe, searchWord));
 
-            // generate recipes searched and ARRAYS of items searched
+            // Genère les recettes recherchées et le contenu des arrays à afficher dans les dropdowns
             getRecipesAndLists(newSearchOfRecipes);
 
             if (newSearchOfRecipes.length === 0) {
@@ -28,12 +31,18 @@ export function searchBar(recipes) {
             }
 
         } else {
-            // generate recipes and ARRAYS of all items
+            // Génère toutes les recettes et tout le contenu des arrays des dropdowns
             getRecipesAndLists(recipes);
         };
     });
 }
 
+/**
+ * Filtre les recettes d'après le mot de recherche
+ * @param {Object} recipe 
+ * @param {string} word 
+ * @returns {boolean}
+ */
 function filterPerSearchWord(recipe, word) {
     if (recipe.name.toLowerCase().includes(word)) {
         return true;
@@ -49,6 +58,10 @@ function filterPerSearchWord(recipe, word) {
     }
 }
 
+/**
+ * Genère les recettes et le contenu des arrays à afficher dans les dropdowns
+ * @param {Object} recipes 
+ */
 function getRecipesAndLists(recipes){
     const allArrayOfIngredients = recipes.flatMap(recipes => recipes.ingredients);
     const allIngredients = allArrayOfIngredients.map(allArrayOfIngredients => allArrayOfIngredients.ingredient.toLowerCase());
