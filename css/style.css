@@ -146,11 +146,11 @@
   overflow: hidden;
 }
 
-.tag-block {
+.tag-block-ingredients, .tag-block-appareils, .tag-block-ustensiles {
   display: flex;
   align-items: center;
 }
-.tag-block-blue {
+.tag-block-ingredients .tag-block-blue, .tag-block-appareils .tag-block-blue, .tag-block-ustensiles .tag-block-blue {
   padding: 0 20px;
   margin-right: 20px;
   display: flex;
@@ -161,21 +161,21 @@
   background-color: #3282F7;
   margin-bottom: 20px;
 }
-.tag-block-blue__text {
+.tag-block-ingredients .tag-block-blue__text, .tag-block-appareils .tag-block-blue__text, .tag-block-ustensiles .tag-block-blue__text {
   font-family: "Lato", sans-serif;
   font-weight: 700;
   font-size: 14px;
   color: #FFFFFF;
 }
-.tag-block-blue__icon {
+.tag-block-ingredients .tag-block-blue__icon, .tag-block-appareils .tag-block-blue__icon, .tag-block-ustensiles .tag-block-blue__icon {
   cursor: pointer;
   margin-left: 15px;
 }
-.tag-block-blue:hover, .tag-block-blue:focus {
+.tag-block-ingredients .tag-block-blue:hover, .tag-block-ingredients .tag-block-blue:focus, .tag-block-appareils .tag-block-blue:hover, .tag-block-appareils .tag-block-blue:focus, .tag-block-ustensiles .tag-block-blue:hover, .tag-block-ustensiles .tag-block-blue:focus {
   background-color: #085bd4;
   transition-duration: 0.5s;
 }
-.tag-block-green {
+.tag-block-ingredients .tag-block-green, .tag-block-appareils .tag-block-green, .tag-block-ustensiles .tag-block-green {
   padding: 0 20px;
   margin-right: 20px;
   display: flex;
@@ -186,21 +186,21 @@
   background-color: #68D9A4;
   margin-bottom: 20px;
 }
-.tag-block-green__text {
+.tag-block-ingredients .tag-block-green__text, .tag-block-appareils .tag-block-green__text, .tag-block-ustensiles .tag-block-green__text {
   font-family: "Lato", sans-serif;
   font-weight: 700;
   font-size: 14px;
   color: #FFFFFF;
 }
-.tag-block-green__icon {
+.tag-block-ingredients .tag-block-green__icon, .tag-block-appareils .tag-block-green__icon, .tag-block-ustensiles .tag-block-green__icon {
   cursor: pointer;
   margin-left: 15px;
 }
-.tag-block-green:hover, .tag-block-green:focus {
+.tag-block-ingredients .tag-block-green:hover, .tag-block-ingredients .tag-block-green:focus, .tag-block-appareils .tag-block-green:hover, .tag-block-appareils .tag-block-green:focus, .tag-block-ustensiles .tag-block-green:hover, .tag-block-ustensiles .tag-block-green:focus {
   background-color: #31c37f;
   transition-duration: 0.5s;
 }
-.tag-block-orange {
+.tag-block-ingredients .tag-block-orange, .tag-block-appareils .tag-block-orange, .tag-block-ustensiles .tag-block-orange {
   padding: 0 20px;
   margin-right: 20px;
   display: flex;
@@ -211,17 +211,17 @@
   background-color: #ED6454;
   margin-bottom: 20px;
 }
-.tag-block-orange__text {
+.tag-block-ingredients .tag-block-orange__text, .tag-block-appareils .tag-block-orange__text, .tag-block-ustensiles .tag-block-orange__text {
   font-family: "Lato", sans-serif;
   font-weight: 700;
   font-size: 14px;
   color: #FFFFFF;
 }
-.tag-block-orange__icon {
+.tag-block-ingredients .tag-block-orange__icon, .tag-block-appareils .tag-block-orange__icon, .tag-block-ustensiles .tag-block-orange__icon {
   cursor: pointer;
   margin-left: 15px;
 }
-.tag-block-orange:hover, .tag-block-orange:focus {
+.tag-block-ingredients .tag-block-orange:hover, .tag-block-ingredients .tag-block-orange:focus, .tag-block-appareils .tag-block-orange:hover, .tag-block-appareils .tag-block-orange:focus, .tag-block-ustensiles .tag-block-orange:hover, .tag-block-ustensiles .tag-block-orange:focus {
   background-color: #dd2c17;
   transition-duration: 0.5s;
 }

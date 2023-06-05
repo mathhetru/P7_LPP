@@ -6,7 +6,7 @@ export function blueTagDOM(arrayOfTags) {
         <img src="assets/icons/LPP_close.svg" class="tag-block-blue__icon" alt="close icon">
     </div>`;
     });
-    document.querySelector(".tag-block").innerHTML = tagDOM.join("");
+    document.querySelector(".tag-block-ingredients").innerHTML = tagDOM.join("");
 }
 
 export function greenTagDOM(arrayOfTags) {
@@ -17,7 +17,7 @@ export function greenTagDOM(arrayOfTags) {
         <img src="assets/icons/LPP_close.svg" class="tag-block-green__icon" alt="close icon">
     </div>`;
     });
-    document.querySelector(".tag-block").innerHTML = tagDOM.join("");
+    document.querySelector(".tag-block-appareils").innerHTML = tagDOM.join("");
 }
 
 export function orangeTagDOM(arrayOfTags) {
@@ -28,5 +28,5 @@ export function orangeTagDOM(arrayOfTags) {
         <img src="assets/icons/LPP_close.svg" class="tag-block-orange__icon" alt="close icon">
     </div>`;
     });
-    document.querySelector(".tag-block").innerHTML = tagDOM.join("");
+    document.querySelector(".tag-block-ustensiles").innerHTML = tagDOM.join("");
 }
