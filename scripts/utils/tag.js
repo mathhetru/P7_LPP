@@ -1,13 +1,11 @@
 import { blueTagDOM, greenTagDOM, orangeTagDOM } from "../factories/tags.factory.js";
 
 export function generateTags() {
-    //DOM 
-    const tagBlock = document.querySelector(".tag-block");
-
-    //DOM lists
+    //DOM
     const listIngredients = document.querySelector(".dp-list-ingredients").querySelectorAll(".dp-list__text");
     const listAppareils = document.querySelector(".dp-list-appareils").querySelectorAll(".dp-list__text");
     const listUstensiles = document.querySelector(".dp-list-ustensiles").querySelectorAll(".dp-list__text");
+
 
     //Arrays
     const allTags = new Array;
@@ -18,6 +16,7 @@ export function generateTags() {
     generateTagOnClick(listIngredients, allIngredients, blueTagDOM);
     generateTagOnClick(listAppareils, allAppareilTags, greenTagDOM);
     generateTagOnClick(listUstensiles, allUstensileTags, orangeTagDOM);
+
 }
 
 function generateTagOnClick(list, array, tagDOM) {
@@ -29,3 +28,11 @@ function generateTagOnClick(list, array, tagDOM) {
         });
     });
 };
+
+function closeBtn(className) {
+    const closeBtn = document.querySelector(className);
+
+    closeBtn.addEventListener("click", function() {
+        
+    });
+}
