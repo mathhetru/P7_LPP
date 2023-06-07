@@ -9,14 +9,16 @@ export function generateTags() {
 
     //Arrays
     const allTags = new Array;
-    const allIngredients = new Array;
+    const allIngredientsTags = new Array;
     const allAppareilTags = new Array;
     const allUstensileTags = new Array;
 
-    generateTagOnClick(listIngredients, allIngredients, blueTagDOM);
+    generateTagOnClick(listIngredients, allIngredientsTags, blueTagDOM);
     generateTagOnClick(listAppareils, allAppareilTags, greenTagDOM);
     generateTagOnClick(listUstensiles, allUstensileTags, orangeTagDOM);
 
+    closeBtn(allIngredientsTags)
+    console.log(allIngredientsTags.length)
 }
 
 function generateTagOnClick(list, array, tagDOM) {
@@ -29,10 +31,15 @@ function generateTagOnClick(list, array, tagDOM) {
     });
 };
 
-function closeBtn(className) {
-    const closeBtn = document.querySelector(className);
 
-    closeBtn.addEventListener("click", function() {
-        
-    });
+
+function closeBtn(array) {
+    if (array.length > 0) { 
+        const closeBtnTag = document.querySelectorAll(".tag-block-blue");
+        console.log(closeBtnTag)
+
+        closeBtnTag.addEventListener("click", function () {
+            console.log("toto");
+        });
+    }
 }
