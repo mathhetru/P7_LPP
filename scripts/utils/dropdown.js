@@ -16,7 +16,6 @@ export function dropdownBoxes() {
 
 function openDropdown(dropdown, list, name) {     
     dropdown.addEventListener("click", function () {
-        // console.log("toto")
 
         if (!list.classList.contains("hide")) {
             // console.log("tata")
@@ -45,7 +44,6 @@ function openDropdown(dropdown, list, name) {
             eachBlock.lastElementChild.classList.remove("rotate");
         });
 
-        // console.log("tutu")
         this.classList.add("active");
         this.firstElementChild.setAttribute("type", "text");
         this.firstElementChild.setAttribute("value", "");

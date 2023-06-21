@@ -1,5 +1,6 @@
 import { generateRecipes } from "../factories/recipes.factory.js";
 import { generateDPListDOM } from "../factories/dropdown.factory.js";
+import { generateTags } from "./tag.js";
 
 /**
  * Genère les recettes affichées, de base ou selon le mot de recherche
@@ -63,8 +64,9 @@ function filterPerSearchWord(recipe, word) {
  * @param {Object} recipes 
  */
 function getRecipesAndLists(recipes){
-    const allArrayOfIngredients = recipes.flatMap(recipes => recipes.ingredients);
-    const allIngredients = allArrayOfIngredients.map(allArrayOfIngredients => allArrayOfIngredients.ingredient.toLowerCase());
+    // const allIngredients = getIngredients(recipes);
+    const allIngredientsOfRecipes = recipes.flatMap(recipe => recipe.ingredients);
+    const allIngredients = allIngredientsOfRecipes.map(ingredient => ingredient.ingredient.toLowerCase());
 
     const allAppliance = recipes.map(recipes => recipes.appliance.toLowerCase());
 
@@ -75,4 +77,11 @@ function getRecipesAndLists(recipes){
     generateDPListDOM(allIngredients, ".dp-list-ingredients");
     generateDPListDOM(allAppliance, ".dp-list-appareils");
     generateDPListDOM(allUstensils, ".dp-list-ustensiles");
+    generateTags();
 }
+
+// function getIngredients(recipes) {
+//     const allIngredientsOfRecipes = recipes.flatMap(recipe => recipe.ingredients);
+//     return allIngredientsOfRecipes.map(ingredient => ingredient.ingredient.toLowerCase());
+// }
+
