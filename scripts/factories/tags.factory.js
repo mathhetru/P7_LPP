@@ -2,7 +2,7 @@ export function blueTagDOM(arrayOfTags) {
     const tagDOM = arrayOfTags.map((oneTag) => {
     return `
     <div class="tag-block-blue">
-        <p class="tag-block-blue__text">${oneTag.innerHTML}</p>
+        <p class="tag-block-blue__text">${oneTag}</p>
         <img src="assets/icons/LPP_close.svg" class="tag-block-blue__icon" alt="close icon">
     </div>`;
     });
