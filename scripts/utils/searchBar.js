@@ -1,7 +1,6 @@
 import { generateRecipes } from "../factories/recipes.factory.js";
 import { generateDPListDOM } from "../factories/dropdown.factory.js";
 import { generateTags } from "./tag.js";
-
 /**
  * Genère les recettes affichées, de base ou selon le mot de recherche
  * @param {Object} recipes 
@@ -12,7 +11,6 @@ export function searchBar(recipes) {
 
     // Génère toutes les recettes et tout le contenu des arrays des dropdowns
     getRecipesAndLists(recipes);
-
     searchBarInput.addEventListener("input", function () {
         const searchWord = searchBarInput.value.toLowerCase().trim();
         const lengthSearchWord = searchWord.length;
@@ -64,7 +62,6 @@ function filterPerSearchWord(recipe, word) {
  * @param {Object} recipes 
  */
 function getRecipesAndLists(recipes){
-    // const allIngredients = getIngredients(recipes);
     const allIngredientsOfRecipes = recipes.flatMap(recipe => recipe.ingredients);
     const allIngredients = allIngredientsOfRecipes.map(ingredient => ingredient.ingredient.toLowerCase());
 
@@ -78,10 +75,32 @@ function getRecipesAndLists(recipes){
     generateDPListDOM(allAppliance, ".dp-list-appareils");
     generateDPListDOM(allUstensils, ".dp-list-ustensiles");
     generateTags();
+
+    displayListDPWithSearchWord(".dp-ingredients__input", allIngredients, ".dp-list-ingredients");
+    displayListDPWithSearchWord(".dp-appareils__input", allAppliance, ".dp-list-appareils");
+    displayListDPWithSearchWord(".dp-ustensiles__input", allUstensils, ".dp-list-ustensiles");
 }
 
-// function getIngredients(recipes) {
-//     const allIngredientsOfRecipes = recipes.flatMap(recipe => recipe.ingredients);
-//     return allIngredientsOfRecipes.map(ingredient => ingredient.ingredient.toLowerCase());
-// }
+/**
+ * Génère la liste des ingredients, appareils, ustensiles d'après l'input de recherche
+ * @param {string} inputName 
+ * @param {string} allDevices 
+ * @param {string} DPName 
+ */
+function displayListDPWithSearchWord(inputName, allDevices, DPName) {
+    //DOM
+    const DPinput = document.querySelector(inputName);
 
+    DPinput.addEventListener("input", function () { 
+        const searchWord = DPinput.value.toLowerCase().trim();
+        const lengthSearchWord = searchWord.length;
+        if (lengthSearchWord > 2) {
+            const newSearchOfTheList = allDevices.filter(oneDevice => oneDevice.toLowerCase().includes(searchWord));
+            generateDPListDOM(newSearchOfTheList, DPName);
+            generateTags();
+        } else {
+            generateDPListDOM(allDevices, DPName);
+            generateTags();
+        };
+    });
+}

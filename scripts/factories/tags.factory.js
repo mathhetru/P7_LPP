@@ -13,7 +13,7 @@ export function greenTagDOM(arrayOfTags) {
     const tagDOM = arrayOfTags.map((oneTag) => {
     return `
     <div class="tag-block-green">
-        <p class="tag-block-green__text">${oneTag.innerHTML}</p>
+        <p class="tag-block-green__text">${oneTag}</p>
         <img src="assets/icons/LPP_close.svg" class="tag-block-green__icon" alt="close icon">
     </div>`;
     });
@@ -24,7 +24,7 @@ export function orangeTagDOM(arrayOfTags) {
     const tagDOM = arrayOfTags.map((oneTag) => {
     return `
     <div class="tag-block-orange">
-        <p class="tag-block-orange__text">${oneTag.innerHTML}</p>
+        <p class="tag-block-orange__text">${oneTag}</p>
         <img src="assets/icons/LPP_close.svg" class="tag-block-orange__icon" alt="close icon">
     </div>`;
     });

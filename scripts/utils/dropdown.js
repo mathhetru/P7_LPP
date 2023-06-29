@@ -15,10 +15,9 @@ export function dropdownBoxes() {
 }
 
 function openDropdown(dropdown, list, name) {     
-    dropdown.addEventListener("click", function () {
+    dropdown.addEventListener("click", function handleDP() {
 
         if (!list.classList.contains("hide")) {
-            // console.log("tata")
             list.classList.add("hide");
             this.classList.remove("active");
             this.firstElementChild.setAttribute("type", "button");
@@ -48,6 +47,12 @@ function openDropdown(dropdown, list, name) {
         this.firstElementChild.setAttribute("type", "text");
         this.firstElementChild.setAttribute("value", "");
         this.lastElementChild.classList.add("rotate");
+        
+        //? Je ne sais pas pourquoi ça fonctionne lolilol (et ça bug de toute façon, lors du reclick)
+        this.firstElementChild.addEventListener("click", handleDP);
+        
+        // dropdown.removeEventListener("click", handleDP);
+        // this.lastElementChild.addEventListener("click", handleDP);
     });
 }
 
