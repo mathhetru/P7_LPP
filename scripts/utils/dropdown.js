@@ -7,6 +7,7 @@ const dropdownUstensiles = document.querySelector(".dp-ustensiles-block");
 const dpListIngredients = document.querySelector(".dp-list-ingredients");
 const dpListAppareils = document.querySelector(".dp-list-appareils");
 const dpListUstensiles = document.querySelector(".dp-list-ustensiles");
+const dpTriggerClassName = '.js-dp-trigger'
 
 export function dropdownBoxes() {
     openDropdown(dropdownIngredients, dpListIngredients, "Ingrédients");
@@ -14,45 +15,33 @@ export function dropdownBoxes() {
     openDropdown(dropdownUstensiles, dpListUstensiles, "Ustensiles");
 }
 
-function openDropdown(dropdown, list, name) {     
-    dropdown.addEventListener("click", function handleDP() {
+function openDropdown(dropdown) {     
+    dropdown.querySelector(dpTriggerClassName).addEventListener("click", function () {
 
-        if (!list.classList.contains("hide")) {
-            list.classList.add("hide");
-            this.classList.remove("active");
-            this.firstElementChild.setAttribute("type", "button");
-            this.firstElementChild.setAttribute("value", name);
-            this.lastElementChild.classList.remove("rotate");
-            return;
-        } 
-
-        const allLists = document.querySelectorAll(".js-list");
         const allBlocks = document.querySelectorAll(".js-block");
-
-        allLists.forEach(eachList => {
-            eachList.classList.add("hide");
-        });
-        list.classList.remove("hide");
+        allBlocks.forEach(block => {
+            if (block.getAttribute('data-dropdown') !== dropdown.getAttribute('data-dropdown')) {
+                block.classList.remove('dp-visible');
+                const input = block.querySelector('input[type=text]');
+                console.log(input.value)
+                input.value = input.getAttribute('data-value');
+            }
+        })
         
-        allBlocks.forEach(eachBlock => {
-            eachBlock.classList.remove("active");
-            eachBlock.firstElementChild.setAttribute("type", "button");
-            dropdownIngredients.firstElementChild.setAttribute("value", "Ingrédients");
-            dropdownAppareils.firstElementChild.setAttribute("value", "Appareils");
-            dropdownUstensiles.firstElementChild.setAttribute("value", "Ustensiles");
-            eachBlock.lastElementChild.classList.remove("rotate");
-        });
-
-        this.classList.add("active");
-        this.firstElementChild.setAttribute("type", "text");
-        this.firstElementChild.setAttribute("value", "");
-        this.lastElementChild.classList.add("rotate");
+        if (dropdown.classList.contains('dp-visible')) {
+            dropdown.classList.remove('dp-visible');
+            // dropdown.querySelector('input[type=text]').value = ''; data-value
+            console.log(dropdown.getAttribute('data-dropdown'));
+            console.log(this.nextElementSibling);
+            dropdown.querySelector('input[type=text]').value = dropdown.getAttribute('data-dropdown');
+            // this.nextElementSibling.setAttribute("value", dropdown.getAttribute('data-dropdown'));
+            console.log(dropdown.querySelector('input[type=text]').value);
+        } else {
+            dropdown.classList.add('dp-visible');
+        }
         
-        //? Je ne sais pas pourquoi ça fonctionne lolilol (et ça bug de toute façon, lors du reclick)
-        this.firstElementChild.addEventListener("click", handleDP);
-        
-        // dropdown.removeEventListener("click", handleDP);
-        // this.lastElementChild.addEventListener("click", handleDP);
+        // Reset de la value du dropdown pour afficher le placeholder
+        dropdown.querySelector('input[type=text]').value = '';
     });
 }
 

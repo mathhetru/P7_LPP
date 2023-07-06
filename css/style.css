@@ -1,11 +1,23 @@
-.active {
-  width: 100% !important;
-  transition: 350ms ease-out;
-}
-
 .rotate {
   transform: rotate(180deg);
   transition: 350ms ease-out;
+}
+
+.dp-trigger {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  cursor: pointer;
+  background: rgba(255, 0, 0, 0.2);
+}
+
+.dp-block:not(.dp-visible) + .dp-list {
+  display: none !important;
+}
+
+.dp-visible .dp-trigger {
+  left: auto;
+  width: 70px;
 }
 
 .banner__link {
@@ -237,6 +249,7 @@
   background-color: #3282F7;
 }
 .dropdown-section .dp-ingredients-block {
+  position: relative;
   transition: width 350ms ease-out;
   display: flex;
   align-items: center;
@@ -278,6 +291,7 @@
   background-color: #68D9A4;
 }
 .dropdown-section .dp-appareils-block {
+  position: relative;
   transition: width 350ms ease-out;
   display: flex;
   align-items: center;
@@ -319,6 +333,7 @@
   background-color: #ED6454;
 }
 .dropdown-section .dp-ustensiles-block {
+  position: relative;
   transition: width 350ms ease-out;
   display: flex;
   align-items: center;

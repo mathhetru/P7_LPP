@@ -3,6 +3,7 @@
     min-height: 69px;
     border-radius: 5px;
     &-block{
+        position: relative;
         transition: width 350ms ease-out;
         display: flex;
         align-items: center;
@@ -40,13 +41,25 @@
     }
 }
 
-.active{
-    width: 100% !important;
-    transition: 350ms ease-out;
-}
-
 .rotate{
     transform: rotate(180deg);
     transition: 350ms ease-out;
+}
+
+.dp-trigger {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    cursor: pointer;
+    background: rgba(255, 0, 0, 0.2);
+}
+
+.dp-block:not(.dp-visible) + .dp-list {
+    display: none !important;
+}
+
+.dp-visible .dp-trigger {
+    left: auto;
+    width: 70px;
 }
 

@@ -1,3 +1,8 @@
+/**
+ * Retourne le DOM d'une liste dans un dropdown 
+ * @param {array} list 
+ * @param {string} className 
+ */
 export function generateDPListDOM(list, className) {
     const listUnique = [...new Set(list)];
     const dpItemListDOM = listUnique.map((oneItem) => {

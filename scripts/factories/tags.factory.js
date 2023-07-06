@@ -1,3 +1,7 @@
+/**
+ * Retourne le DOM d'un tag bleu pour les ingrédients 
+ * @param {array} arrayOfTags 
+ */
 export function blueTagDOM(arrayOfTags) {
     const tagDOM = arrayOfTags.map((oneTag) => {
     return `
@@ -9,6 +13,10 @@ export function blueTagDOM(arrayOfTags) {
     document.querySelector(".tag-block-ingredients").innerHTML = tagDOM.join("");
 }
 
+/**
+ * Retourne le DOM d'un tag vert pour les appareils
+ * @param {array} arrayOfTags 
+ */
 export function greenTagDOM(arrayOfTags) {
     const tagDOM = arrayOfTags.map((oneTag) => {
     return `
@@ -20,6 +28,10 @@ export function greenTagDOM(arrayOfTags) {
     document.querySelector(".tag-block-appareils").innerHTML = tagDOM.join("");
 }
 
+/**
+ * Retourne le DOM d'un tag orange pour les ustensiles
+ * @param {array} arrayOfTags 
+ */
 export function orangeTagDOM(arrayOfTags) {
     const tagDOM = arrayOfTags.map((oneTag) => {
     return `

@@ -1,20 +1,19 @@
 import { generateRecipes } from "../factories/recipes.factory.js";
 import { generateDPListDOM } from "../factories/dropdown.factory.js";
 import { generateTags } from "./tag.js";
+
 /**
  * Genère les recettes affichées, de base ou selon le mot de recherche
  * @param {Object} recipes 
  */
 export function searchBar(recipes) {
-    //DOM
     const searchBarInput = document.querySelector(".search-bar__input");
-
+    
     // Génère toutes les recettes et tout le contenu des arrays des dropdowns
     getRecipesAndLists(recipes);
     searchBarInput.addEventListener("input", function () {
         const searchWord = searchBarInput.value.toLowerCase().trim();
         const lengthSearchWord = searchWord.length;
-        const oupsSentence = document.querySelector(".main-oups");
 
         if (lengthSearchWord > 2) {
             // Filtre chaque recette d'après le mot de recherche et l'ajoute dans l'array
@@ -23,17 +22,29 @@ export function searchBar(recipes) {
             // Genère les recettes recherchées et le contenu des arrays à afficher dans les dropdowns
             getRecipesAndLists(newSearchOfRecipes);
 
-            if (newSearchOfRecipes.length === 0) {
-                oupsSentence.classList.remove("hide");
-            } else {
-                oupsSentence.classList.add("hide");
-            }
-
+            // Affiche la phrase "oups"
+            nothingToDisplay(newSearchOfRecipes)
         } else {
             // Génère toutes les recettes et tout le contenu des arrays des dropdowns
             getRecipesAndLists(recipes);
+
+            // Affiche la phrase "oups"
+            nothingToDisplay(recipes)
         };
     });
+}
+
+/**
+ * Affiche une phrase si aucune recette n'est trouvée
+ * @param {array} recipes 
+ */
+function nothingToDisplay(recipes) {
+    const oupsSentence = document.querySelector(".main-oups");
+    if (recipes.length === 0) {
+        oupsSentence.classList.remove("hide");
+    } else {
+        oupsSentence.classList.add("hide");
+    }
 }
 
 /**
@@ -82,7 +93,7 @@ function getRecipesAndLists(recipes){
 }
 
 /**
- * Génère la liste des ingredients, appareils, ustensiles d'après l'input de recherche
+ * Génère la liste des ingredients, appareils, ustensiles d'après le contenu de recherche dans l'input
  * @param {string} inputName 
  * @param {string} allDevices 
  * @param {string} DPName 
@@ -97,10 +108,10 @@ function displayListDPWithSearchWord(inputName, allDevices, DPName) {
         if (lengthSearchWord > 2) {
             const newSearchOfTheList = allDevices.filter(oneDevice => oneDevice.toLowerCase().includes(searchWord));
             generateDPListDOM(newSearchOfTheList, DPName);
-            generateTags();
         } else {
             generateDPListDOM(allDevices, DPName);
-            generateTags();
         };
     });
 }
+
+
