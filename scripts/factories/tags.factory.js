@@ -1,9 +1,9 @@
 /**
  * Retourne le DOM d'un tag bleu pour les ingrédients 
- * @param {array} arrayOfTags 
+ * @param {Array} tags 
  */
-export function blueTagDOM(arrayOfTags) {
-    const tagDOM = arrayOfTags.map((oneTag) => {
+export function blueTagDOM(tags) {
+    const tagDOM = tags.map((oneTag) => {
     return `
     <div class="tag-block-blue">
         <p class="tag-block-blue__text">${oneTag}</p>
@@ -15,10 +15,10 @@ export function blueTagDOM(arrayOfTags) {
 
 /**
  * Retourne le DOM d'un tag vert pour les appareils
- * @param {array} arrayOfTags 
+ * @param {Array} tags 
  */
-export function greenTagDOM(arrayOfTags) {
-    const tagDOM = arrayOfTags.map((oneTag) => {
+export function greenTagDOM(tags) {
+    const tagDOM = tags.map((oneTag) => {
     return `
     <div class="tag-block-green">
         <p class="tag-block-green__text">${oneTag}</p>
@@ -30,10 +30,10 @@ export function greenTagDOM(arrayOfTags) {
 
 /**
  * Retourne le DOM d'un tag orange pour les ustensiles
- * @param {array} arrayOfTags 
+ * @param {Array} tags 
  */
-export function orangeTagDOM(arrayOfTags) {
-    const tagDOM = arrayOfTags.map((oneTag) => {
+export function orangeTagDOM(tags) {
+    const tagDOM = tags.map((oneTag) => {
     return `
     <div class="tag-block-orange">
         <p class="tag-block-orange__text">${oneTag}</p>

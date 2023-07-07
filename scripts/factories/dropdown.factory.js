@@ -1,6 +1,6 @@
 /**
  * Retourne le DOM d'une liste dans un dropdown 
- * @param {array} list 
+ * @param {Array} list 
  * @param {string} className 
  */
 export function generateDPListDOM(list, className) {
