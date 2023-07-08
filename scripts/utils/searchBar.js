@@ -103,7 +103,7 @@ function getRecipesAndLists(recipes){
     generateDPListDOM(allIngredients, ".dp-list-ingredients");
     generateDPListDOM(allAppliance, ".dp-list-appareils");
     generateDPListDOM(allUstensils, ".dp-list-ustensiles");
-    generateTags();
+    generateTags(recipes);
 
     updateListDPWithHisInput(".dp-ingredients__input", allIngredients, ".dp-list-ingredients");
     updateListDPWithHisInput(".dp-appareils__input", allAppliance, ".dp-list-appareils");
