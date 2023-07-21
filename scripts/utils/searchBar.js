@@ -10,31 +10,35 @@ import { displayRecipesByTags } from "../utils/tag.js";
  */
 export function searchBar(recipes) {
     const searchBarInput = document.querySelector(".search-bar__input");
-    
-    // Génère toutes les recettes et tout le contenu des arrays des dropdowns
-    getRecipesAndLists(recipes);
+    const listIngredients = document.querySelector(".dp-list-ingredients")
+
+    const recipesFromIngredients = displayRecipesByTags(recipes, searchContext.ingredientsContent);
+    getRecipesAndLists(recipesFromIngredients);
+
+    listIngredients.addEventListener("click", function(){
+        const recipesFromIngredients = displayRecipesByTags(recipes, searchContext.ingredientsContent);
+        getRecipesAndLists(recipesFromIngredients);
+        
+    })
+        // Génère toutes les recettes et tout le contenu des arrays des dropdowns
 
     searchBarInput.addEventListener("input", function () {
         const searchWord = searchBarInput.value.toLowerCase().trim();
-
-        searchContext.textSearchContent = searchWord;
         const lengthSearchWord = searchWord.length;
 
         if (lengthSearchWord > 2) {
+            searchContext.textSearchContent = searchWord;
             // Filtre chaque recette d'après le mot de recherche et l'ajoute dans l'array
-            const newSearchOfRecipes = searchByTagsAndSearchWord(recipes, searchWord);
+            const newSearchOfRecipes = searchBySearchWord(recipes, searchWord);
+            const recipesFromIngredients = displayRecipesByTags(newSearchOfRecipes, searchContext.ingredientsContent)
             console.log(searchContext.ingredientsContent);
-            console.log(newSearchOfRecipes);
 
             // Genère les recettes recherchées et le contenu des arrays à afficher dans les dropdowns
-            getRecipesAndLists(newSearchOfRecipes);
+            getRecipesAndLists(recipesFromIngredients);
 
             // Affiche la phrase "oups"
             nothingToDisplay(newSearchOfRecipes)
         } else {
-
-            //
-            
             // Génère toutes les recettes et tout le contenu des arrays des dropdowns
             getRecipesAndLists(recipes);
 
@@ -44,10 +48,9 @@ export function searchBar(recipes) {
     });
 }
 
-export function searchByTagsAndSearchWord(recipes, searchWord) {
-    const result1 = recipes.filter(oneRecipe => filterPerSearchWord(oneRecipe, searchWord));
-    return result1
-    // const result2 = filterByTags(result1)
+export function searchBySearchWord(recipes, searchWord) {
+    const result = recipes.filter(oneRecipe => filterPerSearchWord(oneRecipe, searchWord));
+    return result
 }
 
 
@@ -98,15 +101,16 @@ function getRecipesAndLists(recipes){
     const allUstensilsUpperCase = recipes.flatMap(recipes => recipes.ustensils);
     const allUstensils = allUstensilsUpperCase.map(allUstensilsUpperCase => allUstensilsUpperCase.toLowerCase());
 
-    generateRecipes(recipes);
     generateDPListDOM(allIngredients, ".dp-list-ingredients");
     generateDPListDOM(allAppliance, ".dp-list-appareils");
     generateDPListDOM(allUstensils, ".dp-list-ustensiles");
-    generateTags(recipes);
 
     updateListDPWithHisInput(".dp-ingredients__input", allIngredients, ".dp-list-ingredients");
     updateListDPWithHisInput(".dp-appareils__input", allAppliance, ".dp-list-appareils");
     updateListDPWithHisInput(".dp-ustensiles__input", allUstensils, ".dp-list-ustensiles");
+    generateTags();
+    generateRecipes(recipes);
+
 }
 
 /**
