@@ -1,5 +1,6 @@
 import { blueTagDOM, greenTagDOM, orangeTagDOM } from "../factories/tags.factory.js";
 import { searchContext } from "../data/searchContext.js";
+import { search } from "./searchBar.js";
 
 /**
  * function qui ajoute dans un tableau, retire du tableau et retourne le tableau d'elements selectionnés
@@ -54,6 +55,7 @@ function generateTagOnClick(list, tagDOM, className, ElementManager, ElementsSel
             tagDOM(ElementManager.getSelectedElements());
             closeBtn(tagDOM, className, ElementManager, ElementsSelected);
             ElementsSelected = ElementManager.getSelectedElements();
+            search();
         });
     });
 };
@@ -74,14 +76,15 @@ function closeBtn(tagDOM, className, ElementManager, ElementsSelected) {
             tagDOM(ElementManager.getSelectedElements());
             closeBtn(tagDOM, className, ElementManager, ElementsSelected);
             ElementsSelected = ElementManager.getSelectedElements();
+            search();
         });
     });
 }
 
-export function displayRecipesByTags(recipes, tags) {
-    console.log(tags)
+export function displayRecipesByTags(recipes) {
+    const tags = searchContext.ingredientsContent;
     const recipesFromTags = recipes.filter(oneRecipe => filterPerTags(oneRecipe, tags))
-    return recipesFromTags
+    return recipesFromTags;
 }
 
 /**
