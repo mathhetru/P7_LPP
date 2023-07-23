@@ -40,7 +40,8 @@ export function searchBar(recipes) {
             nothingToDisplay(newSearchOfRecipes)
         } else {
             // Génère toutes les recettes et tout le contenu des arrays des dropdowns
-            getRecipesAndLists(recipes);
+            const recipesFromIngredients = displayRecipesByTags(recipes, searchContext.ingredientsContent);
+            getRecipesAndLists(recipesFromIngredients);
 
             // Affiche la phrase "oups"
             nothingToDisplay(recipes)
@@ -108,9 +109,9 @@ function getRecipesAndLists(recipes){
     updateListDPWithHisInput(".dp-ingredients__input", allIngredients, ".dp-list-ingredients");
     updateListDPWithHisInput(".dp-appareils__input", allAppliance, ".dp-list-appareils");
     updateListDPWithHisInput(".dp-ustensiles__input", allUstensils, ".dp-list-ustensiles");
+
     generateTags();
     generateRecipes(recipes);
-
 }
 
 /**

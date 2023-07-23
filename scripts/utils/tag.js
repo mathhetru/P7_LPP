@@ -82,11 +82,6 @@ export function displayRecipesByTags(recipes, tags) {
     console.log(tags)
     const recipesFromTags = recipes.filter(oneRecipe => filterPerTags(oneRecipe, tags))
     return recipesFromTags
-    /*const newSearchOfRecipesByTagsIngredients = tags.forEach(tag => recipes.filter(oneRecipe => filterPerTags(oneRecipe, tag)));
-    console.log(newSearchOfRecipesByTagsIngredients);*/
-    // if (tags.ingredientsContent.length > 0) {
-    //     console.log("toto");
-    // }
 }
 
 /**
