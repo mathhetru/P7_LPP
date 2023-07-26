@@ -3,54 +3,35 @@ import { generateDPListDOM } from "../factories/dropdown.factory.js";
 import { generateTags } from "./tag.js";
 import { searchContext } from "../data/searchContext.js";
 import { displayRecipesByTags } from "../utils/tag.js";
+import { recipes } from "../data/recipes.js";
 
-/**
- * Genère les recettes affichées, de base ou selon le mot de recherche
- * @param {Object} recipes 
- */
-export function searchBar(recipes) {
+export function search() {
+    const newSearchOfRecipes = searchBySearchWord(recipes.allRecipes, searchContext.textSearchContent);
+    const recipesFromTags = displayRecipesByTags(newSearchOfRecipes);
+    generateRecipes(recipesFromTags);
+    getLists(recipesFromTags);
+    generateTags();
+}
+
+export function searchBar() {
     const searchBarInput = document.querySelector(".search-bar__input");
-    
-    // Génère toutes les recettes et tout le contenu des arrays des dropdowns
-    getRecipesAndLists(recipes);
-    displayRecipesByTags(recipes, searchContext);
-
     searchBarInput.addEventListener("input", function () {
         const searchWord = searchBarInput.value.toLowerCase().trim();
-
-        searchContext.textSearchContent = searchWord;
         const lengthSearchWord = searchWord.length;
-
         if (lengthSearchWord > 2) {
-            // Filtre chaque recette d'après le mot de recherche et l'ajoute dans l'array
-            const newSearchOfRecipes = searchByTagsAndSearchWord(recipes, searchWord);
-            console.log(searchContext.ingredientsContent);
-            console.log(newSearchOfRecipes);
-
-            // Genère les recettes recherchées et le contenu des arrays à afficher dans les dropdowns
-            getRecipesAndLists(newSearchOfRecipes);
-
-            // Affiche la phrase "oups"
-            nothingToDisplay(newSearchOfRecipes)
+            searchContext.textSearchContent = searchWord;
+            search();
         } else {
-
-            //
-            
-            // Génère toutes les recettes et tout le contenu des arrays des dropdowns
-            getRecipesAndLists(recipes);
-
-            // Affiche la phrase "oups"
-            nothingToDisplay(recipes)
-        };
+            searchContext.textSearchContent = '';
+            search();
+        }
     });
 }
 
-export function searchByTagsAndSearchWord(recipes, searchWord) {
-    const result1 = recipes.filter(oneRecipe => filterPerSearchWord(oneRecipe, searchWord));
-    return result1
-    // const result2 = filterByTags(result1)
+export function searchBySearchWord(recipes, searchWord) {
+    const result = recipes.filter(oneRecipe => filterPerSearchWord(oneRecipe, searchWord));
+    return result;
 }
-
 
 /**
  * Affiche une phrase si aucune recette n'est trouvée
@@ -90,7 +71,13 @@ function filterPerSearchWord(recipe, word) {
  * Genère les recettes et le contenu des arrays à afficher dans les dropdowns
  * @param {Object} recipes 
  */
-function getRecipesAndLists(recipes){
+export function getRecipesAndLists(){
+    generateRecipes(recipes.allRecipes);
+    getLists(recipes.allRecipes);
+}
+
+
+function getLists(recipes){
     const allIngredientsOfRecipes = recipes.flatMap(recipe => recipe.ingredients);
     const allIngredients = allIngredientsOfRecipes.map(ingredient => ingredient.ingredient.toLowerCase());
 
@@ -99,16 +86,11 @@ function getRecipesAndLists(recipes){
     const allUstensilsUpperCase = recipes.flatMap(recipes => recipes.ustensils);
     const allUstensils = allUstensilsUpperCase.map(allUstensilsUpperCase => allUstensilsUpperCase.toLowerCase());
 
-    generateRecipes(recipes);
     generateDPListDOM(allIngredients, ".dp-list-ingredients");
     generateDPListDOM(allAppliance, ".dp-list-appareils");
     generateDPListDOM(allUstensils, ".dp-list-ustensiles");
-    generateTags(recipes);
-
-    updateListDPWithHisInput(".dp-ingredients__input", allIngredients, ".dp-list-ingredients");
-    updateListDPWithHisInput(".dp-appareils__input", allAppliance, ".dp-list-appareils");
-    updateListDPWithHisInput(".dp-ustensiles__input", allUstensils, ".dp-list-ustensiles");
 }
+
 
 /**
  * Génère la liste des ingredients, appareils, ustensiles d'après le contenu de recherche dans l'input

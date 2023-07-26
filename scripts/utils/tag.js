@@ -1,5 +1,6 @@
 import { blueTagDOM, greenTagDOM, orangeTagDOM } from "../factories/tags.factory.js";
 import { searchContext } from "../data/searchContext.js";
+import { search } from "./searchBar.js";
 
 /**
  * function qui ajoute dans un tableau, retire du tableau et retourne le tableau d'elements selectionnés
@@ -23,20 +24,20 @@ function manageSelectedElements(arrayName) {
     }
 }
 const ingredientsManager = manageSelectedElements(searchContext.ingredientsContent);
-const appliancesManager = manageSelectedElements(searchContext.ustensilesContent);
-const ustensilsManager = manageSelectedElements(searchContext.appareilsContent);
+const appliancesManager = manageSelectedElements(searchContext.appliancesContent);
+const ustensilsManager = manageSelectedElements(searchContext.ustensilesContent);
 
 /**
  * génère les tags
  */
-export function generateTags(recipes) {
+export function generateTags() {
     const listIngredients = document.querySelector(".dp-list-ingredients").querySelectorAll(".dp-list__text");
     const listAppareils = document.querySelector(".dp-list-appareils").querySelectorAll(".dp-list__text");
     const listUstensiles = document.querySelector(".dp-list-ustensiles").querySelectorAll(".dp-list__text");
 
-    generateTagOnClick(listIngredients, blueTagDOM, ".tag-block-blue__icon", ingredientsManager, searchContext.ingredientsContent, recipes);
-    generateTagOnClick(listAppareils, greenTagDOM, ".tag-block-green__icon", appliancesManager, searchContext.ustensilesContent, recipes);
-    generateTagOnClick(listUstensiles, orangeTagDOM, ".tag-block-orange__icon", ustensilsManager, searchContext.appareilsContent, recipes);
+    generateTagOnClick(listIngredients, blueTagDOM, ".tag-block-blue__icon", ingredientsManager, searchContext.ingredientsContent);
+    generateTagOnClick(listAppareils, greenTagDOM, ".tag-block-green__icon", appliancesManager, searchContext.appliancesContent);
+    generateTagOnClick(listUstensiles, orangeTagDOM, ".tag-block-orange__icon", ustensilsManager, searchContext.ustensilesContent);
 }
 
 /**
@@ -47,14 +48,14 @@ export function generateTags(recipes) {
  * @param {Function} ElementManager 
  * @param {Array} ElementsSelected 
  */
-function generateTagOnClick(list, tagDOM, className, ElementManager, ElementsSelected, recipes) {
+function generateTagOnClick(list, tagDOM, className, ElementManager, ElementsSelected) {
     list.forEach(element => {
         element.addEventListener("click", function () {
             ElementManager.addElement(element.innerText);
             tagDOM(ElementManager.getSelectedElements());
-            closeBtn(tagDOM, className, ElementManager, ElementsSelected, recipes);
+            closeBtn(tagDOM, className, ElementManager, ElementsSelected);
             ElementsSelected = ElementManager.getSelectedElements();
-            displayRecipesByTags(recipes, ElementsSelected);
+            search();
         });
     });
 };
@@ -66,42 +67,50 @@ function generateTagOnClick(list, tagDOM, className, ElementManager, ElementsSel
  * @param {Function} ElementManager 
  * @param {Array} ElementsSelected 
  */
-function closeBtn(tagDOM, className, ElementManager, ElementsSelected, recipes) {
+function closeBtn(tagDOM, className, ElementManager, ElementsSelected) {
     const closeBtns = document.querySelectorAll(className);
     closeBtns.forEach(btn => {
         btn.addEventListener("click", function () {
             const elementToDelete = btn.previousElementSibling.innerHTML;
             ElementManager.removeElement(elementToDelete);
             tagDOM(ElementManager.getSelectedElements());
-            closeBtn(tagDOM, className, ElementManager, ElementsSelected, recipes);
+            closeBtn(tagDOM, className, ElementManager, ElementsSelected);
             ElementsSelected = ElementManager.getSelectedElements();
-            displayRecipesByTags(recipes, ElementsSelected);
+            search();
         });
     });
 }
 
-export function displayRecipesByTags(recipes, tags) {
-    console.log(recipes)
-    console.log(tags);
-    // const newSearchOfRecipesByTagsIngredients = recipes.filter(oneRecipe => filterPerTags(oneRecipe, searchContext.ingredientsContent));
-    // console.log(newSearchOfRecipesByTagsIngredients);
-    if (tags.length > 0) {
-        console.log("toto");
-    }
+export function displayRecipesByTags(recipes) {
+    const ingredientsTags = searchContext.ingredientsContent;
+    const appliancesTags = searchContext.appliancesContent;
+    const ustensilsTags = searchContext.ustensilesContent;
+
+    const recipesFromIngredientsTags = recipes.filter(oneRecipe => filterPerIngredientsTags(oneRecipe, ingredientsTags));
+
+    const recipesFromAppliancesTags = recipesFromIngredientsTags.filter(oneRecipe => filterPerAppliancesTags(oneRecipe, appliancesTags));
+
+    return recipesFromAppliancesTags;
 }
 
 /**
- * Filtre les recettes d'après les tags
+ * Filtre les recettes d'après les tags ingredients
  * @param {Object} recipe 
  * @param {Array} tags
  * @returns {boolean}
  */
-function filterPerTags(recipe, tags) {
-    // tags.forEach(tag => )
-    // const ingredientsMatchingWithTag = recipe.ingredients.filter(oneIngredient => oneIngredient.ingredient.toLowerCase().includes(tag));
-    // if (ingredientsMatchingWithTag.length === 0) {
-    //     return false;
-    // } else {
-    //     return true;
-    // }
+function filterPerIngredientsTags(recipe, tags) {
+    console.log(tags)
+    const ingredientsAsList = recipe.ingredients.map(oneIngredient => oneIngredient.ingredient.toLowerCase());
+    const recipeContainsAllTags = tags.every(tag => ingredientsAsList.includes(tag))
+    return recipeContainsAllTags;
+}
+
+function filterPerAppliancesTags(recipe, tags) {
+    console.log(tags)
+    const appliancesAsList = recipe.appliance.toLowerCase();
+    console.log(appliancesAsList);
+    const recipeContainsAllTags = tags.every(tag => appliancesAsList.includes(tag));
+    console.log(recipeContainsAllTags);
+    return recipeContainsAllTags;
 }
