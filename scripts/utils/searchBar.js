@@ -11,6 +11,7 @@ export function search() {
     generateRecipes(recipesFromTags);
     getLists(recipesFromTags);
     generateTags();
+    nothingToDisplay(recipesFromTags) 
 }
 
 export function searchBar() {
@@ -81,14 +82,18 @@ function getLists(recipes){
     const allIngredientsOfRecipes = recipes.flatMap(recipe => recipe.ingredients);
     const allIngredients = allIngredientsOfRecipes.map(ingredient => ingredient.ingredient.toLowerCase());
 
-    const allAppliance = recipes.map(recipes => recipes.appliance.toLowerCase());
+    const allAppliances = recipes.map(recipes => recipes.appliance.toLowerCase());
 
     const allUstensilsUpperCase = recipes.flatMap(recipes => recipes.ustensils);
     const allUstensils = allUstensilsUpperCase.map(allUstensilsUpperCase => allUstensilsUpperCase.toLowerCase());
 
     generateDPListDOM(allIngredients, ".dp-list-ingredients");
-    generateDPListDOM(allAppliance, ".dp-list-appareils");
+    generateDPListDOM(allAppliances, ".dp-list-appareils");
     generateDPListDOM(allUstensils, ".dp-list-ustensiles");
+
+    updateListDPWithHisInput(".dp-ingredients__input", allIngredients, ".dp-list-ingredients");
+    updateListDPWithHisInput(".dp-appareils__input", allAppliances, ".dp-list-appareils");
+    updateListDPWithHisInput(".dp-ustensiles__input", allUstensils, ".dp-list-ustensiles");
 }
 
 
@@ -100,7 +105,7 @@ function getLists(recipes){
  */
 function updateListDPWithHisInput(inputName, allDevices, DPName) {
     const DPinput = document.querySelector(inputName);
-    DPinput.addEventListener("input", function (e) { 
+    DPinput.addEventListener("input", function () { 
         const searchWord = DPinput.value.toLowerCase().trim();
         const lengthSearchWord = searchWord.length;
         if (lengthSearchWord > 2) {

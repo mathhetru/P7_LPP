@@ -90,7 +90,9 @@ export function displayRecipesByTags(recipes) {
 
     const recipesFromAppliancesTags = recipesFromIngredientsTags.filter(oneRecipe => filterPerAppliancesTags(oneRecipe, appliancesTags));
 
-    return recipesFromAppliancesTags;
+    const recipesFromUstensilsTags = recipesFromAppliancesTags.filter(oneRecipe => filterPerUstensilsTags(oneRecipe, ustensilsTags));
+
+    return recipesFromUstensilsTags;
 }
 
 /**
@@ -100,17 +102,19 @@ export function displayRecipesByTags(recipes) {
  * @returns {boolean}
  */
 function filterPerIngredientsTags(recipe, tags) {
-    console.log(tags)
     const ingredientsAsList = recipe.ingredients.map(oneIngredient => oneIngredient.ingredient.toLowerCase());
     const recipeContainsAllTags = tags.every(tag => ingredientsAsList.includes(tag))
     return recipeContainsAllTags;
 }
 
 function filterPerAppliancesTags(recipe, tags) {
-    console.log(tags)
     const appliancesAsList = recipe.appliance.toLowerCase();
-    console.log(appliancesAsList);
     const recipeContainsAllTags = tags.every(tag => appliancesAsList.includes(tag));
-    console.log(recipeContainsAllTags);
+    return recipeContainsAllTags;
+}
+
+function filterPerUstensilsTags(recipe, tags) {
+    const ustensilsAsList = recipe.ustensils.flatMap(oneUstensil => oneUstensil.toLowerCase());
+    const recipeContainsAllTags = tags.every(tag => ustensilsAsList.includes(tag));
     return recipeContainsAllTags;
 }
