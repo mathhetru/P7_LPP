@@ -49,44 +49,9 @@ function filterPerSearchWord(recipe, word) {
  * Genère les recettes et le contenu des array
  * @param {Object} recipes 
  */
-function getRecipesAndLists(recipes){
-    const allIngredientsOfRecipes = recipes.flatMap(recipe => recipe.ingredients);
-    const allIngredients = allIngredientsOfRecipes.map(ingredient => ingredient.ingredient.toLowerCase());
-
-    const allAppliance = recipes.map(recipes => recipes.appliance.toLowerCase());
-
-    const allUstensilsUpperCase = recipes.flatMap(recipes => recipes.ustensils);
-    const allUstensils = allUstensilsUpperCase.map(allUstensilsUpperCase => allUstensilsUpperCase.toLowerCase());
-
-    generateRecipes(recipes);
-    generateDPListDOM(allIngredients, ".dp-list-ingredients");
-    generateDPListDOM(allAppliance, ".dp-list-appareils");
-    generateDPListDOM(allUstensils, ".dp-list-ustensiles");
-    generateTags();
-
-    updateListDPWithHisInput(".dp-ingredients__input", allIngredients, ".dp-list-ingredients");
-    updateListDPWithHisInput(".dp-appareils__input", allAppliance, ".dp-list-appareils");
-    updateListDPWithHisInput(".dp-ustensiles__input", allUstensils, ".dp-list-ustensiles");
-}
-
-/**
- * Génère la liste des ingredients, appareils, ustensiles d'après le contenu de recherche dans l'input
- * @param {string} inputName 
- * @param {string} allDevices 
- * @param {string} DPName 
- */
-function updateListDPWithHisInput(inputName, allDevices, DPName) {
-    const DPinput = document.querySelector(inputName);
-    DPinput.addEventListener("input", function (e) { 
-        const searchWord = DPinput.value.toLowerCase().trim();
-        const lengthSearchWord = searchWord.length;
-        if (lengthSearchWord > 2) {
-            const newSearchOfTheList = allDevices.filter(oneDevice => oneDevice.toLowerCase().includes(searchWord));
-            generateDPListDOM(newSearchOfTheList, DPName);
-        } else {
-            generateDPListDOM(allDevices, DPName);
-        };
-    });
+export function getRecipesAndLists(){
+    generateRecipes(recipes.allRecipes);
+    getListsInDropdowns(recipes.allRecipes);
 }
 
 
