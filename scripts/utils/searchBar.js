@@ -1,18 +1,8 @@
 import { generateRecipes } from "../factories/recipes.factory.js";
-import { generateDPListDOM } from "../factories/dropdown.factory.js";
-import { generateTags } from "./tag.js";
+import { getListsInDropdowns } from "./dropdown.js";
 import { searchContext } from "../data/searchContext.js";
-import { displayRecipesByTags } from "../utils/tag.js";
 import { recipes } from "../data/recipes.js";
-
-export function search() {
-    const newSearchOfRecipes = searchBySearchWord(recipes.allRecipes, searchContext.textSearchContent);
-    const recipesFromTags = displayRecipesByTags(newSearchOfRecipes);
-    generateRecipes(recipesFromTags);
-    getLists(recipesFromTags);
-    generateTags();
-    nothingToDisplay(recipesFromTags) 
-}
+import { search } from "./globalSearch.js";
 
 export function searchBar() {
     const searchBarInput = document.querySelector(".search-bar__input");
@@ -32,19 +22,6 @@ export function searchBar() {
 export function searchBySearchWord(recipes, searchWord) {
     const result = recipes.filter(oneRecipe => filterPerSearchWord(oneRecipe, searchWord));
     return result;
-}
-
-/**
- * Affiche une phrase si aucune recette n'est trouvée
- * @param {Array} recipes 
- */
-function nothingToDisplay(recipes) {
-    const oupsSentence = document.querySelector(".main-oups");
-    if (recipes.length === 0) {
-        oupsSentence.classList.remove("hide");
-    } else {
-        oupsSentence.classList.add("hide");
-    }
 }
 
 /**
@@ -69,52 +46,12 @@ function filterPerSearchWord(recipe, word) {
 }
 
 /**
- * Genère les recettes et le contenu des arrays à afficher dans les dropdowns
+ * Genère les recettes et le contenu des array
  * @param {Object} recipes 
  */
 export function getRecipesAndLists(){
     generateRecipes(recipes.allRecipes);
-    getLists(recipes.allRecipes);
-}
-
-
-function getLists(recipes){
-    const allIngredientsOfRecipes = recipes.flatMap(recipe => recipe.ingredients);
-    const allIngredients = allIngredientsOfRecipes.map(ingredient => ingredient.ingredient.toLowerCase());
-
-    const allAppliances = recipes.map(recipes => recipes.appliance.toLowerCase());
-
-    const allUstensilsUpperCase = recipes.flatMap(recipes => recipes.ustensils);
-    const allUstensils = allUstensilsUpperCase.map(allUstensilsUpperCase => allUstensilsUpperCase.toLowerCase());
-
-    generateDPListDOM(allIngredients, ".dp-list-ingredients");
-    generateDPListDOM(allAppliances, ".dp-list-appareils");
-    generateDPListDOM(allUstensils, ".dp-list-ustensiles");
-
-    updateListDPWithHisInput(".dp-ingredients__input", allIngredients, ".dp-list-ingredients");
-    updateListDPWithHisInput(".dp-appareils__input", allAppliances, ".dp-list-appareils");
-    updateListDPWithHisInput(".dp-ustensiles__input", allUstensils, ".dp-list-ustensiles");
-}
-
-
-/**
- * Génère la liste des ingredients, appareils, ustensiles d'après le contenu de recherche dans l'input
- * @param {string} inputName 
- * @param {string} allDevices 
- * @param {string} DPName 
- */
-function updateListDPWithHisInput(inputName, allDevices, DPName) {
-    const DPinput = document.querySelector(inputName);
-    DPinput.addEventListener("input", function () { 
-        const searchWord = DPinput.value.toLowerCase().trim();
-        const lengthSearchWord = searchWord.length;
-        if (lengthSearchWord > 2) {
-            const newSearchOfTheList = allDevices.filter(oneDevice => oneDevice.toLowerCase().includes(searchWord));
-            generateDPListDOM(newSearchOfTheList, DPName);
-        } else {
-            generateDPListDOM(allDevices, DPName);
-        };
-    });
+    getListsInDropdowns(recipes.allRecipes);
 }
 
 

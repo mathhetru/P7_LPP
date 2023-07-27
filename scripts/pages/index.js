@@ -1,8 +1,8 @@
 import { getData } from "../factories/data.js";
 import { searchBar } from "../utils/searchBar.js";
-import { dropdownBoxes } from "../utils/dropdown.js";
+import { dropdownBoxes } from "../utils/dropdownTrigger.js";
 import { getRecipesAndLists } from "../utils/searchBar.js";
-import { generateTags } from "../utils/tag.js";
+import { manageClickForTags } from "../utils/eventsOnTags.js";
 import { recipes } from "../data/recipes.js";
 
 /**
@@ -12,7 +12,7 @@ import { recipes } from "../data/recipes.js";
 async function displayRecipes() {
     getRecipesAndLists();
     dropdownBoxes();
-    generateTags();
+    manageClickForTags();
     searchBar();
 }
 
