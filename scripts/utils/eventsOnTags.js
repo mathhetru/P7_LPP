@@ -1,6 +1,6 @@
 import { blueTagDOM, greenTagDOM, orangeTagDOM } from "../factories/tags.factory.js";
 import { searchContext } from "../data/searchContext.js";
-import { search } from "./searchBar.js";
+import { search } from "./globalSearch.js";
 
 /**
  * function qui ajoute dans un tableau, retire du tableau et retourne le tableau d'elements selectionnés
@@ -24,20 +24,20 @@ function manageSelectedElements(arrayName) {
     }
 }
 const ingredientsManager = manageSelectedElements(searchContext.ingredientsContent);
-const appliancesManager = manageSelectedElements(searchContext.ustensilesContent);
-const ustensilsManager = manageSelectedElements(searchContext.appareilsContent);
+const appliancesManager = manageSelectedElements(searchContext.appliancesContent);
+const ustensilsManager = manageSelectedElements(searchContext.ustensilesContent);
 
 /**
  * génère les tags
  */
-export function generateTags() {
+export function manageClickForTags() {
     const listIngredients = document.querySelector(".dp-list-ingredients").querySelectorAll(".dp-list__text");
     const listAppareils = document.querySelector(".dp-list-appareils").querySelectorAll(".dp-list__text");
     const listUstensiles = document.querySelector(".dp-list-ustensiles").querySelectorAll(".dp-list__text");
 
     generateTagOnClick(listIngredients, blueTagDOM, ".tag-block-blue__icon", ingredientsManager, searchContext.ingredientsContent);
-    generateTagOnClick(listAppareils, greenTagDOM, ".tag-block-green__icon", appliancesManager, searchContext.ustensilesContent);
-    generateTagOnClick(listUstensiles, orangeTagDOM, ".tag-block-orange__icon", ustensilsManager, searchContext.appareilsContent);
+    generateTagOnClick(listAppareils, greenTagDOM, ".tag-block-green__icon", appliancesManager, searchContext.appliancesContent);
+    generateTagOnClick(listUstensiles, orangeTagDOM, ".tag-block-orange__icon", ustensilsManager, searchContext.ustensilesContent);
 }
 
 /**
@@ -53,7 +53,7 @@ function generateTagOnClick(list, tagDOM, className, ElementManager, ElementsSel
         element.addEventListener("click", function () {
             ElementManager.addElement(element.innerText);
             tagDOM(ElementManager.getSelectedElements());
-            closeBtn(tagDOM, className, ElementManager, ElementsSelected);
+            closeBtnOnTags(tagDOM, className, ElementManager, ElementsSelected);
             ElementsSelected = ElementManager.getSelectedElements();
             search();
         });
@@ -67,34 +67,16 @@ function generateTagOnClick(list, tagDOM, className, ElementManager, ElementsSel
  * @param {Function} ElementManager 
  * @param {Array} ElementsSelected 
  */
-function closeBtn(tagDOM, className, ElementManager, ElementsSelected) {
+function closeBtnOnTags(tagDOM, className, ElementManager, ElementsSelected) {
     const closeBtns = document.querySelectorAll(className);
     closeBtns.forEach(btn => {
         btn.addEventListener("click", function () {
             const elementToDelete = btn.previousElementSibling.innerHTML;
             ElementManager.removeElement(elementToDelete);
             tagDOM(ElementManager.getSelectedElements());
-            closeBtn(tagDOM, className, ElementManager, ElementsSelected);
+            closeBtnOnTags(tagDOM, className, ElementManager, ElementsSelected);
             ElementsSelected = ElementManager.getSelectedElements();
             search();
         });
     });
-}
-
-export function displayRecipesByTags(recipes) {
-    const tags = searchContext.ingredientsContent;
-    const recipesFromTags = recipes.filter(oneRecipe => filterPerTags(oneRecipe, tags))
-    return recipesFromTags;
-}
-
-/**
- * Filtre les recettes d'après les tags
- * @param {Object} recipe 
- * @param {Array} tags
- * @returns {boolean}
- */
-function filterPerTags(recipe, tags) {
-    const ingredientsAsList = recipe.ingredients.map(oneIngredient => oneIngredient.ingredient.toLowerCase());
-    const recipeContainsAllTags = tags.every(tag => ingredientsAsList.includes(tag))
-    return recipeContainsAllTags;
 }

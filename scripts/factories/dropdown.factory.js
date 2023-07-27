@@ -3,7 +3,7 @@
  * @param {Array} list 
  * @param {string} className 
  */
-export function generateDPListDOM(list, className) {
+export function generateDropdownListDOM(list, className) {
     const listUnique = [...new Set(list)];
     const dpItemListDOM = listUnique.map((oneItem) => {
     return `

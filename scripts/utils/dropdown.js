@@ -1,81 +1,45 @@
-//DOM 
-const dropdownIngredients = document.querySelector(".dp-ingredients-block");
-const dropdownAppareils = document.querySelector(".dp-appareils-block");
-const dropdownUstensiles = document.querySelector(".dp-ustensiles-block");
 
-const dpListIngredients = document.querySelector(".dp-list-ingredients");
-const dpListAppareils = document.querySelector(".dp-list-appareils");
-const dpListUstensiles = document.querySelector(".dp-list-ustensiles");
+import { generateDropdownListDOM } from "../factories/dropdown.factory.js";
+import { manageClickForTags } from "./eventsOnTags.js";
 
-const dpTriggerClassName = '.js-dp-trigger'
 
-/**
- * appelle la function openDropdown() pour ingrédients, appareils, ustensiles
- */
-export function dropdownBoxes() {
-    openDropdown(dropdownIngredients, dpListIngredients, "Ingrédients");
-    openDropdown(dropdownAppareils, dpListAppareils, "Appareils");
-    openDropdown(dropdownUstensiles, dpListUstensiles, "Ustensiles");
+export function getListsInDropdowns(recipes){
+  const allIngredientsOfRecipes = recipes.flatMap(recipe => recipe.ingredients);
+  const allIngredients = allIngredientsOfRecipes.map(ingredient => ingredient.ingredient.toLowerCase());
+
+  const allAppliances = recipes.map(recipes => recipes.appliance.toLowerCase());
+
+  const allUstensilsUpperCase = recipes.flatMap(recipes => recipes.ustensils);
+  const allUstensils = allUstensilsUpperCase.map(allUstensilsUpperCase => allUstensilsUpperCase.toLowerCase());
+
+  generateDropdownListDOM(allIngredients, ".dp-list-ingredients");
+  generateDropdownListDOM(allAppliances, ".dp-list-appareils");
+  generateDropdownListDOM(allUstensils, ".dp-list-ustensiles");
+
+  updateListDropdownWithHisInput(".dp-ingredients__input", allIngredients, ".dp-list-ingredients");
+  updateListDropdownWithHisInput(".dp-appareils__input", allAppliances, ".dp-list-appareils");
+  updateListDropdownWithHisInput(".dp-ustensiles__input", allUstensils, ".dp-list-ustensiles");
 }
 
-/**
- * ouvre / ferme le dropdown 
- * @param {HTMLElement} dropdown 
- */
-function openDropdown(dropdown) {     
-    dropdown.querySelector(dpTriggerClassName).addEventListener("click", function () {
-        const allBlocks = document.querySelectorAll(".js-block");
-        allBlocks.forEach(block => {
-            if (block.getAttribute('data-dropdown') !== dropdown.getAttribute('data-dropdown')) {
-                block.classList.remove('dp-visible');
-                const input = block.querySelector('input[type=text]');
-                input.value = input.getAttribute('data-value');
-            }
-        })
-        
-        if (isVisible(dropdown)) {
-            hideDropdown(dropdown);
-            resetDropdownInputValue(dropdown);
-        } else {
-            showDropdown(dropdown);
-        }
-    });
-}
 
 /**
- * vérifie si le dropdown est visible
- * @param {HTMLElement} dropdown 
- * @returns {boolean}
- */
-function isVisible(dropdown) {
-    return dropdown.classList.contains('dp-visible');
-}
-
-/**
- * cache la liste du dropdown
- * @param {HTMLElement} dropdown 
- */
-function hideDropdown(dropdown) {
-    dropdown.classList.remove('dp-visible');
-}
-
-/**
- * fait apparaite la liste du dropdown
- * @param {HTMLElement} dropdown 
- */
-function showDropdown(dropdown) {
-    dropdown.classList.add('dp-visible');
-    dropdown.querySelector('input[type=text]').value = '';
-}
-
-/**
- * remet à zéro la valeur de l'input et affiche la liste du dropdown entière
- * @param {HTMLElement} dropdown 
- */
-function resetDropdownInputValue(dropdown) {
-    const input = dropdown.querySelector('input[type=text]')
-    const placholder = dropdown.getAttribute('data-dropdown');
-    input.value = '';
-    input.dispatchEvent(new Event('input'));
-    input.value = placholder
+* Génère la liste des ingredients, appareils, ustensiles d'après le contenu de recherche dans l'input
+* @param {string} inputName 
+* @param {string} allDevices 
+* @param {string} DPName 
+*/
+function updateListDropdownWithHisInput(inputName, allDevices, DPName) {
+  const DPinput = document.querySelector(inputName);
+  DPinput.addEventListener("input", function () { 
+      const searchWord = DPinput.value.toLowerCase().trim();
+      const lengthSearchWord = searchWord.length;
+      if (lengthSearchWord > 2) {
+          const newSearchOfTheList = allDevices.filter(oneDevice => oneDevice.toLowerCase().includes(searchWord));
+          generateDropdownListDOM(newSearchOfTheList, DPName);
+          manageClickForTags();
+      } else {
+          generateDropdownListDOM(allDevices, DPName);
+          manageClickForTags();
+      };
+  });
 }
