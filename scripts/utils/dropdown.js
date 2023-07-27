@@ -1,8 +1,10 @@
-
 import { generateDropdownListDOM } from "../factories/dropdown.factory.js";
-import { manageClickForTags } from "./eventsOnTags.js";
+import { manageClicksForTags } from "./eventsOnTags.js";
 
-
+/**
+ * Génère la liste des ingredients, appareils, ustensiles
+ * @param {Object} recipes 
+ */
 export function getListsInDropdowns(recipes){
   const allIngredientsOfRecipes = recipes.flatMap(recipe => recipe.ingredients);
   const allIngredients = allIngredientsOfRecipes.map(ingredient => ingredient.ingredient.toLowerCase());
@@ -23,9 +25,9 @@ export function getListsInDropdowns(recipes){
 
 
 /**
-* Génère la liste des ingredients, appareils, ustensiles d'après le contenu de recherche dans l'input
+* Génère la liste des ingredients, appareils, ustensiles d'après le contenu de recherche dans l'input du dropdown
 * @param {string} inputName 
-* @param {string} allDevices 
+* @param {array} allDevices 
 * @param {string} DPName 
 */
 function updateListDropdownWithHisInput(inputName, allDevices, DPName) {
@@ -36,10 +38,10 @@ function updateListDropdownWithHisInput(inputName, allDevices, DPName) {
       if (lengthSearchWord > 2) {
           const newSearchOfTheList = allDevices.filter(oneDevice => oneDevice.toLowerCase().includes(searchWord));
           generateDropdownListDOM(newSearchOfTheList, DPName);
-          manageClickForTags();
+          manageClicksForTags();
       } else {
           generateDropdownListDOM(allDevices, DPName);
-          manageClickForTags();
+          manageClicksForTags();
       };
   });
 }

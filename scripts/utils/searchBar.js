@@ -4,6 +4,9 @@ import { searchContext } from "../data/searchContext.js";
 import { recipes } from "../data/recipes.js";
 import { search } from "./globalSearch.js";
 
+/**
+ * Gère la barre de recherche principale
+ */
 export function searchBar() {
     const searchBarInput = document.querySelector(".search-bar__input");
     searchBarInput.addEventListener("input", function () {
@@ -19,13 +22,19 @@ export function searchBar() {
     });
 }
 
+/**
+ * Filtre les recettes d'après le mot de recherche
+ * @param {Object} recipes 
+ * @param {string} searchWord 
+ * @returns 
+ */
 export function searchBySearchWord(recipes, searchWord) {
     const result = recipes.filter(oneRecipe => filterPerSearchWord(oneRecipe, searchWord));
     return result;
 }
 
 /**
- * Filtre les recettes d'après le mot de recherche
+ * Retourne un boolean si le mot de recherche est dans les ingrédients ou la description ou le nom de chaque recette
  * @param {Object} recipe 
  * @param {string} word 
  * @returns {boolean}
@@ -46,7 +55,7 @@ function filterPerSearchWord(recipe, word) {
 }
 
 /**
- * Genère les recettes et le contenu des array
+ * Genère les recettes et le contenu des listes dans les dropdowns
  * @param {Object} recipes 
  */
 export function getRecipesAndLists(){

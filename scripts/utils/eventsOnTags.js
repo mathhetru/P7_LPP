@@ -3,7 +3,7 @@ import { searchContext } from "../data/searchContext.js";
 import { search } from "./globalSearch.js";
 
 /**
- * function qui ajoute dans un tableau, retire du tableau et retourne le tableau d'elements selectionnés
+ * ajoute dans un array, retire de l'array et retourne l'array de tags selectionnés
  * @param {array} arrayName 
  * @returns 
  */
@@ -28,9 +28,9 @@ const appliancesManager = manageSelectedElements(searchContext.appliancesContent
 const ustensilsManager = manageSelectedElements(searchContext.ustensilesContent);
 
 /**
- * génère les tags
+ * manage les events clicks pour la liste des ingrédients, appareils et ustensiles
  */
-export function manageClickForTags() {
+export function manageClicksForTags() {
     const listIngredients = document.querySelector(".dp-list-ingredients").querySelectorAll(".dp-list__text");
     const listAppareils = document.querySelector(".dp-list-appareils").querySelectorAll(".dp-list__text");
     const listUstensiles = document.querySelector(".dp-list-ustensiles").querySelectorAll(".dp-list__text");
@@ -41,7 +41,10 @@ export function manageClickForTags() {
 }
 
 /**
- * Génère un tag au click sur un élement dans une des listes, retourne également le tableau d'élements selectionnés
+ * Génère un tag au click sur un élement dans une des listes
+ * ajoute le tag dans l'array
+ * retourne l'array de tag
+ * et appelle la fonction search()
  * @param {NodeList} list 
  * @param {Function} tagDOM 
  * @param {string} className 
@@ -61,7 +64,10 @@ function generateTagOnClick(list, tagDOM, className, ElementManager, ElementsSel
 };
 
 /**
- * retire un tag au click sur la croix de celui-ci, retourne égalemeent le tableau d'élements selectionnés
+ * retire un tag au click sur la croix de celui-ci
+ * retire le tag dans l'array
+ * retourne l'array de tag
+ * et appelle la fonction search()
  * @param {Function} tagDOM 
  * @param {string} className 
  * @param {Function} ElementManager 
