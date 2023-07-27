@@ -29,8 +29,11 @@ export function searchBar() {
  * @returns 
  */
 export function searchBySearchWord(recipes, searchWord) {
-    const result = recipes.filter(oneRecipe => filterPerSearchWord(oneRecipe, searchWord));
-    return result;
+    for (let i = 0; i < recipes.length; i++) {
+        filterPerSearchWord(recipes[i], searchWord);
+    }
+    // const result = recipes.filter(oneRecipe => filterPerSearchWord(oneRecipe, searchWord));
+    // return result;
 }
 
 /**
