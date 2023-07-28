@@ -14,11 +14,14 @@ Dans cette implémentation, nous avons un contexte de recherche qui est un objet
 - le(s) tag(s) appareil(s) ajouté(s) par l'utilisateur
 - le(s) tag(s) ustensil(s) ajouté(s) par l'utilisateur
 
+`voici le code pour le searchContext`
+
 `export const searchContext = {
   textSearchContent: '',
   ingredientsContent: [],
   appliancesContent: [],
   ustensilesContent: []
-}"`
+}
+`
 
 L'algorithme va utiliser le contexte de recherche pour filter les recettes. D'abord avec la barre de recherche puis avec les tags.
