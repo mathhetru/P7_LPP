@@ -28,8 +28,6 @@ L'algorithme va utiliser le contexte de recherche pour filter les recettes. D'ab
 
 #
 
-#
-
 > Version 2 de l'algorithme de recherche (Branche : AlgorithmeV2)
 
 Cette version utilise la programmation natives JS avec les boucles (while, for...)
