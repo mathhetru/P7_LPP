@@ -29,11 +29,13 @@ export function searchBar() {
  * @returns 
  */
 export function searchBySearchWord(recipes, searchWord) {
+    const recipesWithSearchWord = [];
     for (let i = 0; i < recipes.length; i++) {
-        filterPerSearchWord(recipes[i], searchWord);
+        if (filterPerSearchWord(recipes[i], searchWord)) {
+            recipesWithSearchWord.push(recipes[i]);
+        }
     }
-    // const result = recipes.filter(oneRecipe => filterPerSearchWord(oneRecipe, searchWord));
-    // return result;
+    return recipesWithSearchWord;
 }
 
 /**
@@ -48,7 +50,13 @@ function filterPerSearchWord(recipe, word) {
     } else if (recipe.description.toLowerCase().includes(word)) {
         return true;
     } else {
-        const ingredientsMatchingWithSearchWord = recipe.ingredients.filter(oneIngredient => oneIngredient.ingredient.toLowerCase().includes(word));
+        const ingredientsMatchingWithSearchWord = [];
+        for (let i = 0; i < recipe.ingredients.length; i++) {
+            let oneIngredient = recipe.ingredients[i];
+            if (oneIngredient.ingredient.toLowerCase().includes(word)) {
+                ingredientsMatchingWithSearchWord.push(oneIngredient);
+            }
+        }
         if (ingredientsMatchingWithSearchWord.length === 0) {
             return false;
         } else {
