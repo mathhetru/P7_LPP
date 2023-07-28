@@ -2,6 +2,7 @@
 
 Projet 7 de la formation Openclassrooms Développeur Front-end
 "Développez un algorithme de recherche en JavaScript"
+#
 
 > Version 1 de l'algorithme de recherche (Branche : AlgorithmeV1)
 
