@@ -7,6 +7,8 @@ Projet 7 de la formation Openclassrooms Développeur Front-end
 
 > Version 1 de l'algorithme de recherche (Branche : AlgorithmeV1)
 
+Cette version utilise la programmation fonctionnelle avec les méthodes de l'objet array (foreach, filter, map...).
+
 #
 
 > Version 2 de l'algorithme de recherche (Branche : AlgorithmeV2)
@@ -14,8 +16,6 @@ Projet 7 de la formation Openclassrooms Développeur Front-end
 Cette version utilise la programmation natives JS avec les boucles (while, for...)
 
 #
-
-Cette version utilise la programmation fonctionnelle avec les méthodes de l'objet array (foreach, filter, map...).
 
 Dans cette implémentation, nous avons un contexte de recherche qui est un objet contenant :
 
